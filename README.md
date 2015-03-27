@@ -1,2 +1,2 @@
 # flappy_bird
-In this assignment, your task is to write a video game, using JavaScript and HTML5. It should use transformed DOM elements, and use object-oriented design for the JavaScript code.
+In this assignment, your task is to write a video game, using JavaScript and HTML5. It should use transformed DOM elements, and use object-oriented design for the JavaScript code. Just testing my git crap.
