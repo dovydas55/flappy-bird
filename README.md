@@ -8,3 +8,6 @@ npm -d install
 bower install
 python -m http.server 8000
 
+---
+
+Flappy bird tutorial: https://www.youtube.com/watch?v=riUx2G75mas
