@@ -5,8 +5,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: em(50px);
-    height: em(50px);
-
-    background: blue;
+    width: em(113px);
+    height: em(90px);
+    background-image: url("/../images/pig.png");
+    background-size: cover;
+    background-color: red;
 }
