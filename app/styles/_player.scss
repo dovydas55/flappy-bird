@@ -6,8 +6,8 @@
     top: 0;
     left: 0;
     width: em(113px);
-    height: em(90px);
+    height: em(92px);
     background-image: url("/../images/pig.png");
     background-size: cover;
-    background-color: red;
+    background-color: $game-backdrop;
 }

@@ -17,17 +17,17 @@ body {
   margin-left: -51.2em;
   margin-top: -28.8em;
   overflow: hidden;
-  background: red; }
+  background: #47B5FF; }
 
 .Player {
   position: absolute;
   top: 0;
   left: 0;
   width: 11.3em;
-  height: 9em;
+  height: 9.2em;
   background-image: url("/../images/pig.png");
   background-size: cover;
-  background-color: red; }
+  background-color: #47B5FF; }
 
 .Scoreboard {
   position: absolute;
