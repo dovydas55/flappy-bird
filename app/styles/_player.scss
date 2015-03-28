@@ -7,7 +7,41 @@
     left: 0;
     width: em(113px);
     height: em(92px);
-    background-image: url("/../images/pig.png");
+    background-image: url("/../images/pig_nowings.png");
     background-size: cover;
-    background-color: $game-backdrop;
+}
+.Wing{
+    position: absolute;
+    left: 3em;
+    top: 3em;
+    height: em(32px);
+    width: em(35px);
+    //background: blue;
+    background-image: url("/../images/pig_wing.png");
+    background-size: cover;
+
+    -webkit-animation: flap 1s infinite;
+    -webkit-transform-origin: 100% 0%;
+}
+
+@-webkit-keyframes flap {
+    0% {
+      transform:  rotate(0deg) ;
+    }
+    20% {
+      transform:  rotate(15deg) ;
+    }
+    40% {
+      transform:  rotate(15deg) ;
+
+    }
+    60% {
+      transform:  rotate(-15deg) ;
+    }
+    80% {
+      transform:  rotate(-15deg) ;
+    }
+    100% {
+      transform:  rotate(0deg) ;
+    }
 }

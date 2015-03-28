@@ -25,10 +25,33 @@ body {
   left: 0;
   width: 11.3em;
   height: 9.2em;
-  background-image: url("/../images/pig.png");
-  background-size: cover;
-  background-color: #47B5FF; }
+  background-image: url("/../images/pig_nowings.png");
+  background-size: cover; }
 
+.Wing {
+  position: absolute;
+  left: 3em;
+  top: 3em;
+  height: 3.2em;
+  width: 3.5em;
+  background-image: url("/../images/pig_wing.png");
+  background-size: cover;
+  -webkit-animation: flap 1s infinite;
+  -webkit-transform-origin: 100% 0%; }
+
+@-webkit-keyframes flap {
+  0% {
+    transform: rotate(0deg); }
+  20% {
+    transform: rotate(15deg); }
+  40% {
+    transform: rotate(15deg); }
+  60% {
+    transform: rotate(-15deg); }
+  80% {
+    transform: rotate(-15deg); }
+  100% {
+    transform: rotate(0deg); } }
 .Scoreboard {
   position: absolute;
   left: 50%;
