@@ -22,6 +22,48 @@ body {
   overflow: hidden;
   background: #47b5ff; }
 
+.Clouds {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  width: 57.6em;
+  height: 57.6em;
+  background-size: contain;
+  background-repeat: no-repeat; }
+
+#Cloud1 {
+  background-image: url("/../assets/images/cloud_1.png");
+  -webkit-animation: cloudslide 10s infinite; }
+
+#Cloud2 {
+  background-image: url("/../assets/images/cloud_2.png");
+  -webkit-animation: cloudslide 12s infinite; }
+
+#Cloud3 {
+  background-image: url("/../assets/images/cloud_3.png");
+  -webkit-animation: cloudslide 16s infinite; }
+
+#Cloud4 {
+  background-image: url("/../assets/images/cloud_4.png");
+  -webkit-animation: cloudslide 18s infinite; }
+
+#Cloud5 {
+  background-image: url("/../assets/images/cloud_5.png");
+  -webkit-animation: cloudslide 22s infinite; }
+
+#Cloud6 {
+  background-image: url("/../assets/images/cloud_6.png");
+  -webkit-animation: cloudslide 26s infinite; }
+
+#Cloud7 {
+  background-image: url("/../assets/images/cloud_7.png");
+  -webkit-animation: cloudslide 30s infinite; }
+
+@-webkit-keyframes cloudslide {
+  0% {
+    transform: translate(1000px, 0); }
+  100% {
+    transform: translate(-1000px, 0); } }
 .Player {
   position: absolute;
   top: 0;
