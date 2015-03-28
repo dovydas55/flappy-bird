@@ -14,9 +14,10 @@ python -m http.server 8000
 ---
 
 If you want to change css:
+
 Ruby is preinstalled on mac so in terminal you install sass with "gem install sass"
 
-Then open terminal in project app folder and run "sass --watch main.scss"
+Then open terminal in project app/styles folder and run "sass --watch main.scss"
 
 All .scss files are included in main.scss so changes to any file will automatically be compiled to main.css
 
