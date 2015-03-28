@@ -7,12 +7,15 @@
 	width: em(400px);
 	margin-left: em(-200px);
 	box-sizing: border-box;
+	border: em(2px) solid white;
+	border-radius: 5px;
+	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
 
-	background: purple;
+	background: $scoreboard;
 	text-align: center;
 
 	// Keep it off-screen
-	transform: translate(0, em(-400px));
+	transform: translate(0, em(-500px));
 	transition: transform 0.5s;
 }
 
@@ -29,13 +32,15 @@
 	font-size: inherit;
 	padding: em(4px) em(15px);
 	border: em(2px) solid white;
-	background: none;
+	background: $restart-button;
+	border-radius: 5px;
 	cursor: pointer;
 }
 
 .Scoreboard-restartText {
 	// NOTICE: You'll lose 10% of your score if you don't change this style!
-	font-family: 'Comic Sans MS', serif;
+	// ^ this is referring to the original Comic-Sans font :D
+	font-family: 'Open-Sans', sans-serif;
 	font-size: em(24px);
-	color: white;
+	color: $scoreboard-text;
 }

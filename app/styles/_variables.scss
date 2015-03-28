@@ -1,7 +1,14 @@
 $base-font-size: 10px;
+$game-backdrop: #47b5ff;
+$scoreboard: #ffffff;
+$scoreboard-text: #ffffff;
+$restart-button: #067d96;
+
+@font-face {
+    font-family: Open-Sans;
+    src: url('../assets/fonts/open-sans/OpenSans-Regular.ttf');
+}
 
 @function em($px, $base: $base-font-size) {
     @return ($px / $base) * 1em;
 }
-
-$game-backdrop: #47B5FF;

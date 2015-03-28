@@ -7,6 +7,9 @@ body {
   color: #000;
   padding: 0.2em 0; }
 
+@font-face {
+  font-family: Open-Sans;
+  src: url("../assets/fonts/open-sans/OpenSans-Regular.ttf"); }
 .GameCanvas {
   font-size: 10px;
   position: absolute;
@@ -17,7 +20,7 @@ body {
   margin-left: -51.2em;
   margin-top: -28.8em;
   overflow: hidden;
-  background: #47B5FF; }
+  background: #47b5ff; }
 
 .Player {
   position: absolute;
@@ -25,7 +28,7 @@ body {
   left: 0;
   width: 11.3em;
   height: 9.2em;
-  background-image: url("/../images/pig_nowings.png");
+  background-image: url("/../assets/images/pig_nowings.png");
   background-size: cover; }
 
 .Wing {
@@ -34,7 +37,7 @@ body {
   top: 3em;
   height: 3.2em;
   width: 3.5em;
-  background-image: url("/../images/pig_wing.png");
+  background-image: url("/../assets/images/pig_wing.png");
   background-size: cover;
   -webkit-animation: flap 1s infinite;
   -webkit-transform-origin: 100% 0%; }
@@ -60,9 +63,12 @@ body {
   width: 40em;
   margin-left: -20em;
   box-sizing: border-box;
-  background: purple;
+  border: 0.2em solid white;
+  border-radius: 5px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
   text-align: center;
-  transform: translate(0, -40em);
+  transform: translate(0, -50em);
   transition: transform 0.5s; }
 
 /**
@@ -76,12 +82,13 @@ body {
   font-size: inherit;
   padding: 0.4em 1.5em;
   border: 0.2em solid white;
-  background: none;
+  background: #067d96;
+  border-radius: 5px;
   cursor: pointer; }
 
 .Scoreboard-restartText {
-  font-family: 'Comic Sans MS', serif;
+  font-family: 'Open-Sans', sans-serif;
   font-size: 2.4em;
-  color: white; }
+  color: #ffffff; }
 
 /*# sourceMappingURL=main.css.map */
