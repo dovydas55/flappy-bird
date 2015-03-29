@@ -16,8 +16,6 @@ Additional requirements.
 
 All moving elements should be hardware accelerated. 10%
 
-There should be a background element moving in paralax to the foreground, f.ex. a repeating cloud image. 10%
-
 The character rotates into his direction. The player should either have a sprite animation or some element (like a wing) which animates when flapping.  10%
 
 Background music and sound effects for flapping and colliding. Mute support. 15%
@@ -29,3 +27,9 @@ Bonus points.
 The game is responsive, scales down and playable on mobile and tablets. 20%
 
 Other gameplay innovations are rated by the complexity of implementation.
+
+
+////////////////// DONE!!! ////////////////////////
+
+
+There should be a background element moving in paralax to the foreground, f.ex. a repeating cloud image. 10%

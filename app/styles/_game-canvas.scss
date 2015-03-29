@@ -24,7 +24,6 @@
 
 .Clouds {
     position: absolute;
-    left: 0%;
     top: 0%;
     width: em(576px);
     height: em(576px);
@@ -34,44 +33,36 @@
 
 #Cloud1 {
     background-image: url("/../assets/images/cloud_1.png");
-    -webkit-animation: cloudslide 10s infinite;
+    left: 0%;
+    -webkit-animation: slide 30s infinite;
 }
 
 #Cloud2 {
     background-image: url("/../assets/images/cloud_2.png");
-    -webkit-animation: cloudslide 12s infinite;
+    left: 20%;
+    -webkit-animation: slide 40s infinite;
 }
 
 #Cloud3 {
     background-image: url("/../assets/images/cloud_3.png");
-    -webkit-animation: cloudslide 16s infinite;
+    left: 25%;
+    -webkit-animation: slide 50s infinite;
 }
 
 #Cloud4 {
     background-image: url("/../assets/images/cloud_4.png");
-    -webkit-animation: cloudslide 18s infinite;
+    left: 15%;
+    -webkit-animation: slide 35s infinite;
 }
 
 #Cloud5 {
     background-image: url("/../assets/images/cloud_5.png");
-    -webkit-animation: cloudslide 22s infinite;
+    left: 30%;
+    -webkit-animation: slide 45s infinite;
 }
 
 #Cloud6 {
     background-image: url("/../assets/images/cloud_6.png");
-    -webkit-animation: cloudslide 26s infinite;
-}
-
-#Cloud7 {
-    background-image: url("/../assets/images/cloud_7.png");
-    -webkit-animation: cloudslide 30s infinite;
-}
-
-@-webkit-keyframes cloudslide {
-    0% {
-      transform: translate(1000px,0);
-    }
-    100% {
-      transform: translate(-1000px,0);
-    }
+    left: 40%;
+    -webkit-animation: slide 55s infinite;
 }

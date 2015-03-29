@@ -12,3 +12,12 @@ $restart-button: #067d96;
 @function em($px, $base: $base-font-size) {
     @return ($px / $base) * 1em;
 }
+
+@-webkit-keyframes slide {
+    0% {
+      transform: translate(1000px,0);
+    }
+    100% {
+      transform: translate(-1000px,0);
+    }
+}

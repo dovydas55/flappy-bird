@@ -10,6 +10,11 @@ body {
 @font-face {
   font-family: Open-Sans;
   src: url("../assets/fonts/open-sans/OpenSans-Regular.ttf"); }
+@-webkit-keyframes slide {
+  0% {
+    transform: translate(1000px, 0); }
+  100% {
+    transform: translate(-1000px, 0); } }
 .GameCanvas {
   font-size: 10px;
   position: absolute;
@@ -24,7 +29,6 @@ body {
 
 .Clouds {
   position: absolute;
-  left: 0%;
   top: 0%;
   width: 57.6em;
   height: 57.6em;
@@ -33,37 +37,34 @@ body {
 
 #Cloud1 {
   background-image: url("/../assets/images/cloud_1.png");
-  -webkit-animation: cloudslide 10s infinite; }
+  left: 0%;
+  -webkit-animation: slide 30s infinite; }
 
 #Cloud2 {
   background-image: url("/../assets/images/cloud_2.png");
-  -webkit-animation: cloudslide 12s infinite; }
+  left: 20%;
+  -webkit-animation: slide 40s infinite; }
 
 #Cloud3 {
   background-image: url("/../assets/images/cloud_3.png");
-  -webkit-animation: cloudslide 16s infinite; }
+  left: 25%;
+  -webkit-animation: slide 50s infinite; }
 
 #Cloud4 {
   background-image: url("/../assets/images/cloud_4.png");
-  -webkit-animation: cloudslide 18s infinite; }
+  left: 15%;
+  -webkit-animation: slide 35s infinite; }
 
 #Cloud5 {
   background-image: url("/../assets/images/cloud_5.png");
-  -webkit-animation: cloudslide 22s infinite; }
+  left: 30%;
+  -webkit-animation: slide 45s infinite; }
 
 #Cloud6 {
   background-image: url("/../assets/images/cloud_6.png");
-  -webkit-animation: cloudslide 26s infinite; }
+  left: 40%;
+  -webkit-animation: slide 55s infinite; }
 
-#Cloud7 {
-  background-image: url("/../assets/images/cloud_7.png");
-  -webkit-animation: cloudslide 30s infinite; }
-
-@-webkit-keyframes cloudslide {
-  0% {
-    transform: translate(1000px, 0); }
-  100% {
-    transform: translate(-1000px, 0); } }
 .Player {
   position: absolute;
   top: 0;
@@ -81,7 +82,7 @@ body {
   width: 3.5em;
   background-image: url("/../assets/images/pig_wing.png");
   background-size: cover;
-  -webkit-animation: flap 1s infinite;
+  -webkit-animation: flap 0.3s infinite;
   -webkit-transform-origin: 100% 0%; }
 
 @-webkit-keyframes flap {
@@ -132,5 +133,23 @@ body {
   font-family: 'Open-Sans', sans-serif;
   font-size: 2.4em;
   color: #ffffff; }
+
+.Pipes {
+  position: absolute;
+  width: 35em;
+  height: 35em;
+  background-size: cover; }
+
+#PipeUp {
+  bottom: 0;
+  right: 0;
+  background-image: url("/../assets/images/pipe.png");
+  -webkit-animation: slide 40s infinite; }
+
+#PipeDown {
+  top: 0;
+  right: 0;
+  background-image: url("/../assets/images/pipe_down.png");
+  -webkit-animation: slide 40s infinite; }
 
 /*# sourceMappingURL=main.css.map */
