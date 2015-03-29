@@ -11,10 +11,19 @@ window.Player = (function() {
 	var INITIAL_POSITION_X = 30;
 	var INITIAL_POSITION_Y = 25;
 
+
 	var Player = function(el, game) {
 		this.el = el;
 		this.game = game;
-		this.pos = { x: 0, y: 0 };
+		this.pos = {
+			x: 0,
+			y: 0,
+			/*velocity: 0,
+			gravity: 0.25,
+			_jump: 4.6*/
+
+		};
+
 	};
 
 	/**
@@ -26,6 +35,18 @@ window.Player = (function() {
 	};
 
 	Player.prototype.onFrame = function(delta) {
+
+		if(Controls.keys.space) {
+
+			this.pos.y -= delta * 2 * SPEED;
+
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+
+
+		}
+
+		this.pos.y += 0.25;
+
 		if (Controls.keys.right) {
 			this.pos.x += delta * SPEED;
 		}

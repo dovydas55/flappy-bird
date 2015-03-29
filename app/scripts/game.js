@@ -1,15 +1,13 @@
 window.Game = (function() {
 	'use strict';
 
-	var el = document.getElementById('myCanvas');
-	var ctx = el.getContext('3d');
-
 	/**
 	 * Main game class.
 	 * @param {Element} el jQuery element containing the game.
 	 * @constructor
 	 */
 	var Game = function(el) {
+
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.isPlaying = false;
