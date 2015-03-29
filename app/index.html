@@ -25,6 +25,8 @@
         <![endif]-->
 
         <div class="GameCanvas">
+          <canvas id="myCanvas" width="1024" height="576">
+          </canvas>
             <div class="Clouds" id="Cloud1"></div>
             <div class="Clouds" id="Cloud2"></div>
             <div class="Clouds" id="Cloud3"></div>
@@ -53,11 +55,13 @@
         <!-- endbuild -->
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="phaser.min.js"></script>
         <script src="scripts/main.js"></script>
         <script src="scripts/controls.js"></script>
         <script src="scripts/game.js"></script>
         <script src="scripts/player.js"></script>
         <script src="scripts/utils.js"></script>
+
         <!-- endbuild -->
 </body>
 </html>

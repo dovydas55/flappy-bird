@@ -1,6 +1,8 @@
-
 window.Game = (function() {
 	'use strict';
+
+	var el = document.getElementById('myCanvas');
+	var ctx = el.getContext('3d');
 
 	/**
 	 * Main game class.
@@ -83,5 +85,3 @@ window.Game = (function() {
 
 	return Game;
 })();
-
-
