@@ -106,6 +106,26 @@ body {
   -webkit-animation: slide 65s linear infinite;
   animation: slide 65s linear infinite; }
 
+.Ground {
+  position: absolute;
+  bottom: 0;
+  height: 2em;
+  width: 108.3em;
+  background-image: url("/../assets/images/ground.png");
+  z-index: 1;
+  -webkit-animation: groundmove 0.5s linear infinite;
+  animation: groundmove 0.5s linear infinite; }
+
+@-webkit-keyframes groundmove {
+  0% {
+    transform: translate(0em, 0em); }
+  100% {
+    transform: translate(-5.9em, 0em); } }
+@keyframes groundmove {
+  0% {
+    transform: translate(0em, 0em); }
+  100% {
+    transform: translate(-5.9em, 0em); } }
 .Player {
   position: absolute;
   margin-top: -4.6em;
