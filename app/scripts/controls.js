@@ -13,6 +13,9 @@ window.Controls = (function() {
         40: 'down'
     };
 
+    //var flag = false;
+
+
     /**
      * A singleton class which abstracts all player input,
      * should hide complexity of dealing with keyboard, mouse
@@ -20,6 +23,7 @@ window.Controls = (function() {
      * @constructor
      */
     var Controls = function() {
+        this.flag = false;
         this._didJump = false;
         this.keys = {};
         $(window)
@@ -45,8 +49,11 @@ window.Controls = (function() {
         if (e.keyCode in KEYS) {
             var keyName = KEYS[e.keyCode];
             this.keys[keyName] = false;
+
             return false;
         }
+
+        this.flag = false;
     };
 
     /**
@@ -57,7 +64,7 @@ window.Controls = (function() {
         this._didJump = false;
         return answer;
     };
-    
+
     // Export singleton.
     return new Controls();
 })();

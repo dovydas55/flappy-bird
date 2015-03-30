@@ -18,9 +18,6 @@ window.Player = (function() {
 		this.pos = {
 			x: 0,
 			y: 0,
-			/*velocity: 0,
-			gravity: 0.25,
-			_jump: 4.6*/
 
 		};
 
@@ -38,14 +35,19 @@ window.Player = (function() {
 
 		if(Controls.keys.space) {
 
-			this.pos.y -= delta * 2 * SPEED;
+			console.log(Controls.flag);
+			Controls.flag = false;
 
-			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+			if(!Controls.flag){
+				this.pos.y -= delta * SPEED * 4;
+				this.el.css('transform', 'translateZ(0) translate(' + this.pos.y + 'em)');
+				Controls.flag = true;
 
+			}
 
 		}
 
-		this.pos.y += 0.25;
+		this.pos.y += 0.98;
 
 		if (Controls.keys.right) {
 			this.pos.x += delta * SPEED;
