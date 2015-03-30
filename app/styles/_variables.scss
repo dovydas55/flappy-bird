@@ -1,8 +1,14 @@
+
+/*------ Colors ------*/
+
 $base-font-size: 10px;
-$game-backdrop: #47b5ff;
+$game-backdrop: #067d96;
+$game-backdrop-bottom: #daf0ff;
 $scoreboard: #ffffff;
 $scoreboard-text: #ffffff;
 $restart-button: #067d96;
+
+/*---------------------*/
 
 @font-face {
     font-family: Open-Sans;
@@ -13,11 +19,65 @@ $restart-button: #067d96;
     @return ($px / $base) * 1em;
 }
 
+
 @-webkit-keyframes slide {
     0% {
-      transform: translate(1000px,0);
+      transform: translate(100em,0);
     }
     100% {
-      transform: translate(-2024px,0);
+      transform: translate(-202.4em,0);
+    }
+}
+
+@keyframes slide {
+    0% {
+      transform: translate(100em,0);
+    }
+    100% {
+      transform: translate(-202.4em,0);
+    }
+}
+
+/*----------------Wing flap -----------------*/
+
+@keyframes flap {
+    0% {
+      transform:  rotate(0deg) ;
+    }
+    20% {
+      transform:  rotate(15deg) ;
+    }
+    40% {
+      transform:  rotate(15deg) ;
+    }
+    60% {
+      transform:  rotate(-15deg) ;
+    }
+    80% {
+      transform:  rotate(-15deg) ;
+    }
+    100% {
+      transform:  rotate(0deg) ;
+    }
+}
+
+@-webkit-keyframes flap {
+    0% {
+      transform:  rotate(0deg) ;
+    }
+    20% {
+      transform:  rotate(15deg) ;
+    }
+    40% {
+      transform:  rotate(15deg) ;
+    }
+    60% {
+      transform:  rotate(-15deg) ;
+    }
+    80% {
+      transform:  rotate(-15deg) ;
+    }
+    100% {
+      transform:  rotate(0deg) ;
     }
 }
