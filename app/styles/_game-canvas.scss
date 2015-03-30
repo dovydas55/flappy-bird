@@ -20,6 +20,7 @@
     // Don't draw outside this box.
     overflow: hidden;
     background: $game-backdrop;
+    background: -webkit-linear-gradient($game-backdrop, $game-backdrop-bottom);
 }
 
 .Clouds {
@@ -34,35 +35,41 @@
 #Cloud1 {
     background-image: url("/../assets/images/cloud_1.png");
     left: 0%;
-    -webkit-animation: slide 30s infinite;
+    -webkit-animation: slide 40s linear infinite;
+    animation: slide 40s linear infinite;
 }
 
 #Cloud2 {
     background-image: url("/../assets/images/cloud_2.png");
-    left: 20%;
-    -webkit-animation: slide 32s infinite;
+    left: 40%;
+    -webkit-animation: slide 42s linear infinite;
+    animation: slide 42s linear infinite;
 }
 
 #Cloud3 {
     background-image: url("/../assets/images/cloud_3.png");
-    left: 25%;
-    -webkit-animation: slide 50s infinite;
+    left: 60%;
+    -webkit-animation: slide 50s linear infinite;
+    animation: slide 50s linear infinite;
 }
 
 #Cloud4 {
     background-image: url("/../assets/images/cloud_4.png");
-    left: 15%;
-    -webkit-animation: slide 35s infinite;
+    left: 80%;
+    -webkit-animation: slide 55s linear infinite;
+    animation: slide 55s linear infinite;
 }
 
 #Cloud5 {
     background-image: url("/../assets/images/cloud_5.png");
-    left: 30%;
-    -webkit-animation: slide 42s infinite;
+    left: 100%;
+    -webkit-animation: slide 52s linear infinite;
+    animation: slide 52s linear infinite;
 }
 
 #Cloud6 {
     background-image: url("/../assets/images/cloud_6.png");
-    left: 40%;
-    -webkit-animation: slide 55s infinite;
+    left: 50%;
+    -webkit-animation: slide 60s linear infinite;
+    animation: slide 60s linear infinite;
 }

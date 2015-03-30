@@ -7,86 +7,35 @@ body {
   color: #000;
   padding: 0.2em 0; }
 
+/*------ Colors ------*/
+/*---------------------*/
 @font-face {
   font-family: Open-Sans;
   src: url("../assets/fonts/open-sans/OpenSans-Regular.ttf"); }
 @-webkit-keyframes slide {
   0% {
-    transform: translate(1000px, 0); }
+    transform: translate(100em, 0); }
   100% {
-    transform: translate(-2024px, 0); } }
-.GameCanvas {
-  font-size: 10px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 102.4em;
-  height: 57.6em;
-  margin-left: -51.2em;
-  margin-top: -28.8em;
-  overflow: hidden;
-  background: #47b5ff; }
-
-.Clouds {
-  position: absolute;
-  top: 0%;
-  width: 57.6em;
-  height: 57.6em;
-  background-size: contain;
-  background-repeat: no-repeat; }
-
-#Cloud1 {
-  background-image: url("/../assets/images/cloud_1.png");
-  left: 0%;
-  -webkit-animation: slide 30s infinite; }
-
-#Cloud2 {
-  background-image: url("/../assets/images/cloud_2.png");
-  left: 20%;
-  -webkit-animation: slide 32s infinite; }
-
-#Cloud3 {
-  background-image: url("/../assets/images/cloud_3.png");
-  left: 25%;
-  -webkit-animation: slide 50s infinite; }
-
-#Cloud4 {
-  background-image: url("/../assets/images/cloud_4.png");
-  left: 15%;
-  -webkit-animation: slide 35s infinite; }
-
-#Cloud5 {
-  background-image: url("/../assets/images/cloud_5.png");
-  left: 30%;
-  -webkit-animation: slide 42s infinite; }
-
-#Cloud6 {
-  background-image: url("/../assets/images/cloud_6.png");
-  left: 40%;
-  -webkit-animation: slide 55s infinite; }
-
-.Player {
-  position: absolute;
-  margin-top: -4.6em;
-  margin-right: -5.6em;
-  width: 11.3em;
-  height: 9.2em;
-  background-image: url("/../assets/images/pig_nowings.png");
-  background-size: cover;
-  transform: translateZ(0); }
-
-.Wing {
-  position: absolute;
-  left: 3em;
-  top: 3em;
-  height: 3.2em;
-  width: 3.5em;
-  background-image: url("/../assets/images/pig_wing.png");
-  background-size: cover;
-  transform: translateZ(0);
-  -webkit-animation: flap 0.3s infinite;
-  -webkit-transform-origin: 100% 0%; }
-
+    transform: translate(-202.4em, 0); } }
+@keyframes slide {
+  0% {
+    transform: translate(100em, 0); }
+  100% {
+    transform: translate(-202.4em, 0); } }
+/*----------------Wing flap -----------------*/
+@keyframes flap {
+  0% {
+    transform: rotate(0deg); }
+  20% {
+    transform: rotate(15deg); }
+  40% {
+    transform: rotate(15deg); }
+  60% {
+    transform: rotate(-15deg); }
+  80% {
+    transform: rotate(-15deg); }
+  100% {
+    transform: rotate(0deg); } }
 @-webkit-keyframes flap {
   0% {
     transform: rotate(0deg); }
@@ -100,6 +49,86 @@ body {
     transform: rotate(-15deg); }
   100% {
     transform: rotate(0deg); } }
+.GameCanvas {
+  font-size: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 102.4em;
+  height: 57.6em;
+  margin-left: -51.2em;
+  margin-top: -28.8em;
+  overflow: hidden;
+  background: #067d96;
+  background: -webkit-linear-gradient(#067d96, #daf0ff); }
+
+.Clouds {
+  position: absolute;
+  top: 0%;
+  width: 57.6em;
+  height: 57.6em;
+  background-size: contain;
+  background-repeat: no-repeat; }
+
+#Cloud1 {
+  background-image: url("/../assets/images/cloud_1.png");
+  left: 0%;
+  -webkit-animation: slide 40s linear infinite;
+  animation: slide 40s linear infinite; }
+
+#Cloud2 {
+  background-image: url("/../assets/images/cloud_2.png");
+  left: 40%;
+  -webkit-animation: slide 42s linear infinite;
+  animation: slide 42s linear infinite; }
+
+#Cloud3 {
+  background-image: url("/../assets/images/cloud_3.png");
+  left: 60%;
+  -webkit-animation: slide 50s linear infinite;
+  animation: slide 50s linear infinite; }
+
+#Cloud4 {
+  background-image: url("/../assets/images/cloud_4.png");
+  left: 80%;
+  -webkit-animation: slide 55s linear infinite;
+  animation: slide 55s linear infinite; }
+
+#Cloud5 {
+  background-image: url("/../assets/images/cloud_5.png");
+  left: 100%;
+  -webkit-animation: slide 52s linear infinite;
+  animation: slide 52s linear infinite; }
+
+#Cloud6 {
+  background-image: url("/../assets/images/cloud_6.png");
+  left: 50%;
+  -webkit-animation: slide 60s linear infinite;
+  animation: slide 60s linear infinite; }
+
+.Player {
+  position: absolute;
+  margin-top: -4.6em;
+  margin-left: -5.6em;
+  width: 8.9em;
+  height: 7.1em;
+  background-image: url("/../assets/images/pig_openeyes_nowings.png");
+  background-size: cover;
+  transform: translateZ(0); }
+
+.Wing {
+  position: absolute;
+  left: 2em;
+  top: 2.2em;
+  height: 2.8em;
+  width: 3.1em;
+  background-image: url("/../assets/images/pig_wing.png");
+  background-size: cover;
+  transform: translateZ(0);
+  animation: flap 0.3s infinite;
+  -webkit-animation: flap 0.3s infinite;
+  transform-origin: 100% 0%; }
+
 .Scoreboard {
   position: absolute;
   left: 50%;
@@ -140,18 +169,19 @@ body {
   position: absolute;
   width: 35em;
   height: 35em;
+  right: 0;
   background-size: cover; }
 
 #PipeUp {
   bottom: 0;
-  right: 0;
   background-image: url("/../assets/images/pipe.png");
-  -webkit-animation: slide 40s infinite; }
+  -webkit-animation: slide 25s linear infinite;
+  animation: slide 25s linear infinite; }
 
 #PipeDown {
   top: 0;
-  right: 0;
   background-image: url("/../assets/images/pipe_down.png");
-  -webkit-animation: slide 40s infinite; }
+  -webkit-animation: slide 25s linear infinite;
+  animation: slide 25s linear infinite; }
 
 /*# sourceMappingURL=main.css.map */

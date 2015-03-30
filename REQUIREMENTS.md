@@ -25,6 +25,7 @@ Background music and sound effects for flapping and colliding. Mute support. 15%
 Bonus points.
 
 The game is responsive, scales down and playable on mobile and tablets. 20%
+- It does scale down - does not yet have touchscreen support
 
 Other gameplay innovations are rated by the complexity of implementation.
 
