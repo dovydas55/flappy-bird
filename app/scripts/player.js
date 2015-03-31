@@ -17,7 +17,7 @@ window.Player = (function() {
 		var self  = this;
 		this.el = el;
 		this.jump = true;
-		this.velocity = 0;
+		this.velocity = GRAVITY;
 		this.game = game;
 		this.pos = {
 			x: 0,
@@ -35,6 +35,32 @@ window.Player = (function() {
 		$(window).bind('keyup',function(){
 			self.jump = true;
 		});
+
+		$(window).bind('mousedown', function(){
+			if(self.jump){
+				notInitialState = true;
+				self.flap();
+				self.jump = false;
+			}
+		});
+
+		$(window).bind('mouseup', function(){
+			self.jump = true;
+		});
+
+
+		$(window).bind('touchstart', function(){
+			if(self.jump){
+				notInitialState = true;
+				self.flap();
+				self.jump = false;
+			}
+		});
+
+		$(window).bind('touchend', function(){
+			self.jump = true;
+		});
+
 	};
 
 	/**
@@ -47,12 +73,10 @@ window.Player = (function() {
 
 	Player.prototype.flap = function() {
 		console.log('flap');
-		this.velocity -= 1.5;
+		this.velocity -= 2.1;
 	};
 
 	Player.prototype.onFrame = function(delta) {
-
-
 
 		/*if(Controls.keys.space || Controls.keys.mouse === 0) {
 
@@ -70,12 +94,9 @@ window.Player = (function() {
 		if(notInitialState){
 			console.log('on frame');
 			this.velocity += GRAVITY;
-			this.pos.y += this.velocity;
+			this.pos.y += this.velocity - delta;
 			//this.pos.y += 0.98;
 		}
-
-
-
 
 		/*if (Controls.keys.right) {
 			this.pos.x += delta * SPEED;
