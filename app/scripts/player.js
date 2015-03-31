@@ -11,14 +11,17 @@ window.Player = (function() {
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 51;
 	var INITIAL_POSITION_Y = 25;
+	var INITIAL_POSITION_X_MOBILE = 16;
+	var INITIAL_POSITION_Y_MOBILE = 24;
 	var notInitialState = false;
+	var afterRestart = false;
 
 	var Player = function(el, game) {
 		var self  = this;
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
 		this.jump = true;
-		this.velocity = GRAVITY;
+		this.velocity = 0;
 		this.game = game;
 		this.pos = {
 			x: 0,
@@ -27,8 +30,8 @@ window.Player = (function() {
 
 		$(window).bind('keydown',function(e){
 			if(e.keyCode === 32 && self.jump){
-				notInitialState = true;
 				self.el.addClass('Player-flap');
+				notInitialState = true;
 				self.flap();
 				self.jump = false;
 			}
@@ -41,6 +44,10 @@ window.Player = (function() {
 		$(window).bind('mousedown', function(){
 			if(self.jump){
 				notInitialState = true;
+				if(afterRestart){
+					console.log("initial false i mousedown");
+					notInitialState = false;
+				}
 				self.flap();
 				self.jump = false;
 			}
@@ -48,12 +55,17 @@ window.Player = (function() {
 
 		$(window).bind('mouseup', function(){
 			self.jump = true;
+			afterRestart = false;
 		});
 
 
 		$(window).bind('touchstart', function(){
 			if(self.jump){
 				notInitialState = true;
+				if(afterRestart){
+					console.log("initial false i touchstart");
+					notInitialState = false;
+				}
 				self.flap();
 				self.jump = false;
 			}
@@ -61,6 +73,7 @@ window.Player = (function() {
 
 		$(window).bind('touchend', function(){
 			self.jump = true;
+			afterRestart = false;
 		});
 
 	};
@@ -69,8 +82,17 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
-		this.pos.x = INITIAL_POSITION_X;
-		this.pos.y = INITIAL_POSITION_Y;
+		console.log(window.innerWidth + " in player func");
+
+		if(window.innerWidth < 500){
+			this.pos.x = INITIAL_POSITION_X_MOBILE;
+			this.pos.y = INITIAL_POSITION_Y_MOBILE;
+		}
+		else {
+			this.pos.x = INITIAL_POSITION_X;
+			this.pos.y = INITIAL_POSITION_Y;
+		}
+
 	};
 
 	Player.prototype.flap = function() {
@@ -127,6 +149,7 @@ window.Player = (function() {
 			/*this.pos.y < 0 ||*/
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
 			notInitialState = false;
+			afterRestart = true;
 			return this.game.gameover();
 
 		}
