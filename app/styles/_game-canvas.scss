@@ -23,6 +23,18 @@
     background: -webkit-linear-gradient($game-backdrop, $game-backdrop-bottom);
 }
 
+.GameCanvas-mobile {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 32em;
+    height: 48em;
+    margin-left: (em(-320px) / 2);
+    margin-top: (em(-480px) / 2);
+
+}
+
+
 .Clouds {
     position: absolute;
     top: 0%;

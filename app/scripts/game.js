@@ -8,6 +8,7 @@ window.Game = (function() {
 	 */
 	var Game = function(el) {
 
+		var self = this;
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.isPlaying = false;
@@ -20,8 +21,11 @@ window.Game = (function() {
 		console.log(window.innerWidth);
 
 		if(window.innerWidth < 500){
-
-			el.css('GameCanvas-mobile');
+			self.el.addClass('GameCanvas-mobile');
+			fontSize = Math.min(
+				window.innerWidth / 32,
+				window.innerHeight / 48
+			);
 
 		}
 
