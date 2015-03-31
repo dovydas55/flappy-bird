@@ -73,6 +73,12 @@ body {
   background: #067d96;
   background: -webkit-linear-gradient(#067d96, #daf0ff); }
 
+
+.GameCanvas-mobile {
+    width: 32em;
+    height: 48em;
+ }
+
 .Clouds {
   position: absolute;
   top: 0%;
