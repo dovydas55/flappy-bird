@@ -80,6 +80,9 @@ window.Game = (function() {
 		this.isPlaying = false;
 		this.player.el.addClass('Player-dead');
 
+		var ground = this.el.find('.Ground');
+		ground.addClass('Ground-stop');
+
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');

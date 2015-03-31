@@ -73,12 +73,6 @@ body {
   background: #067d96;
   background: -webkit-linear-gradient(#067d96, #daf0ff); }
 
-
-.GameCanvas-mobile {
-    width: 32em;
-    height: 48em;
- }
-
 .Clouds {
   position: absolute;
   top: 0%;
@@ -133,9 +127,13 @@ body {
   -webkit-animation: groundmove 0.5s linear infinite;
   animation: groundmove 0.5s linear infinite; }
 
+.Ground-stop {
+  -webkit-animation: none;
+  animation: none; }
+
 .Player {
   position: absolute;
-  margin-top: -2.8em;
+  margin-top: -2.2em;
   margin-left: -5em;
   width: 7em;
   height: 5.6em;
@@ -176,8 +174,8 @@ body {
   margin-left: -20em;
   box-sizing: border-box;
   border: 0.2em solid white;
-  border-radius: 5px;
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  box-shadow: 0em 2em 2em rgba(0, 0, 0, 0.5);
   background: #ffffff;
   text-align: center;
   transform: translate(0, -50em);
