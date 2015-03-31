@@ -2,7 +2,6 @@
 window.Pipes = (function() {
 	'use strict';
 
-
   var pipesList = [];
 	/**
 	 * Main game class.
@@ -15,7 +14,6 @@ window.Pipes = (function() {
 		pipe = new window.Pipes(this.el.find('.PipeUp'), this.el.find('.PipeDown'));
 		pipesList.push(pipe);
 	};
-
 
 	/**
 	 * Some shared constants.
