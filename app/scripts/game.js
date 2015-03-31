@@ -11,7 +11,11 @@ window.Game = (function() {
 		var self = this;
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
+		this.ground = this.el.find('.Ground');
 		this.isPlaying = false;
+
+		this.pipes = new window.Pipes(this.el.find('#PipeUp'), this.el.find('#PipeDown'), this);
+
 		var fontSize = Math.min(
 			window.innerWidth / 102.4,
 			window.innerHeight / 57.6
@@ -51,6 +55,7 @@ window.Game = (function() {
 
 		// Update game entities.
 		this.player.onFrame(delta);
+		this.pipes.onFrame(delta);
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -75,6 +80,8 @@ window.Game = (function() {
 		this.player.reset();
 		this.player.el.removeClass('Player-dead');
 		this.player.el.removeClass('Player-flap');
+		this.ground.removeClass('Ground-stop');
+		this.pipes.reset();
 	};
 
 	/**
@@ -84,8 +91,7 @@ window.Game = (function() {
 		this.isPlaying = false;
 		this.player.el.addClass('Player-dead');
 
-		var ground = this.el.find('.Ground');
-		ground.addClass('Ground-stop');
+		this.ground.addClass('Ground-stop');
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;

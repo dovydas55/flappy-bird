@@ -7,4 +7,5 @@ $(function() {
 
     var game = new window.Game($('.GameCanvas'));
     game.start();
+    
 });
