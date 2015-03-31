@@ -27,6 +27,7 @@ window.Player = (function() {
 		$(window).bind('keydown',function(e){
 			if(e.keyCode === 32 && self.jump){
 				notInitialState = true;
+				self.el.addClass('Player-flap');
 				self.flap();
 				self.jump = false;
 			}

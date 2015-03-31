@@ -76,6 +76,7 @@ window.Game = (function() {
 	 */
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
+		this.player.el.addClass('Player-dead');
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;
