@@ -15,6 +15,7 @@ If a player loses he should see his score and a button which starts the game aga
 Additional requirements.
 
 All moving elements should be hardware accelerated. 10%
+- Done on piggy, we have to set it up on other moving parts
 
 The character rotates into his direction. The player should either have a sprite animation or some element (like a wing) which animates when flapping.  10%
 
