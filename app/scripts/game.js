@@ -73,6 +73,8 @@ window.Game = (function() {
 	 */
 	Game.prototype.reset = function() {
 		this.player.reset();
+		this.player.el.removeClass('Player-dead');
+		this.player.el.removeClass('Player-flap');
 	};
 
 	/**

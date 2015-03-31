@@ -19,6 +19,7 @@ window.Player = (function() {
 	var Player = function(el, game) {
 		var self  = this;
 		this.el = el;
+		this.flapSound = document.getElementById("flapSound");
 		this.jump = true;
 		this.velocity = 0;
 		this.game = game;
@@ -97,6 +98,8 @@ window.Player = (function() {
 	Player.prototype.flap = function() {
 		console.log('flap');
 		this.velocity -= 2.1;
+		this.flapSound.load();
+		this.flapSound.play();
 	};
 
 	Player.prototype.onFrame = function(delta) {
