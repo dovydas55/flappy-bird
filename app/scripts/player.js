@@ -1,11 +1,12 @@
 window.Player = (function() {
 	'use strict';
 
-	var Controls = window.Controls;
+	//var Controls = window.Controls;
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
 	var SPEED = 30; // * 10 pixels per second
+	var GRAVITY = 0.05;
 	var WIDTH = 5;
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 51;
@@ -13,12 +14,27 @@ window.Player = (function() {
 	var notInitialState = false;
 
 	var Player = function(el, game) {
+		var self  = this;
 		this.el = el;
+		this.jump = true;
+		this.velocity = 0;
 		this.game = game;
 		this.pos = {
 			x: 0,
 			y: 0,
 		};
+
+		$(window).bind('keydown',function(e){
+			if(e.keyCode === 32 && self.jump){
+				notInitialState = true;
+				self.flap();
+				self.jump = false;
+			}
+		});
+
+		$(window).bind('keyup',function(){
+			self.jump = true;
+		});
 	};
 
 	/**
@@ -29,24 +45,36 @@ window.Player = (function() {
 		this.pos.y = INITIAL_POSITION_Y;
 	};
 
+	Player.prototype.flap = function() {
+		console.log('flap');
+		this.velocity -= 1.5;
+	};
+
 	Player.prototype.onFrame = function(delta) {
 
-		if(Controls.keys.space || Controls.keys.mouse === 0) {
+
+
+		/*if(Controls.keys.space || Controls.keys.mouse === 0) {
 
 			notInitialState = true;
 			console.log(Controls.flag);
 			Controls.flag = false;
 
-			if(!Controls.flag){
-				this.pos.y -= delta * SPEED * 4;
+			if(!Controls.keys[space]){
+				this.pos.y -= delta * SPEED * 6;
 				this.el.css('transform', 'translateZ(0) translate(' + this.pos.y + 'em)');
 				Controls.flag = true;
 			}
-		}
+		}*/
 
 		if(notInitialState){
-			this.pos.y += 0.98;
+			console.log('on frame');
+			this.velocity += GRAVITY;
+			this.pos.y += this.velocity;
+			//this.pos.y += 0.98;
 		}
+
+
 
 
 		/*if (Controls.keys.right) {
@@ -55,12 +83,12 @@ window.Player = (function() {
 		if (Controls.keys.left) {
 			this.pos.x -= delta * SPEED;
 		}*/
-		if (Controls.keys.down) {
+		/*if (Controls.keys.down) {
 			this.pos.y += delta * SPEED;
 		}
 		if (Controls.keys.up) {
 			this.pos.y -= delta * SPEED;
-		}
+		}*/
 
 		this.checkCollisionWithBounds();
 
@@ -73,7 +101,9 @@ window.Player = (function() {
 			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
 			/*this.pos.y < 0 ||*/
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
+			notInitialState = false;
 			return this.game.gameover();
+
 		}
 		else if(this.pos.y < -3){
 			   this.pos.y = -3.98;
