@@ -49,6 +49,17 @@ body {
     transform: rotate(-15deg); }
   100% {
     transform: rotate(0deg); } }
+/*------ Ground move --------*/
+@-webkit-keyframes groundmove {
+  0% {
+    transform: translate(0em, 0em); }
+  100% {
+    transform: translate(-5.9em, 0em); } }
+@keyframes groundmove {
+  0% {
+    transform: translate(0em, 0em); }
+  100% {
+    transform: translate(-5.9em, 0em); } }
 .GameCanvas {
   font-size: 10px;
   position: absolute;
@@ -116,16 +127,6 @@ body {
   -webkit-animation: groundmove 0.5s linear infinite;
   animation: groundmove 0.5s linear infinite; }
 
-@-webkit-keyframes groundmove {
-  0% {
-    transform: translate(0em, 0em); }
-  100% {
-    transform: translate(-5.9em, 0em); } }
-@keyframes groundmove {
-  0% {
-    transform: translate(0em, 0em); }
-  100% {
-    transform: translate(-5.9em, 0em); } }
 .Player {
   position: absolute;
   margin-top: -4.6em;

@@ -84,21 +84,3 @@
     -webkit-animation: groundmove 0.5s linear infinite;
     animation: groundmove 0.5s linear infinite;
 }
-
-@-webkit-keyframes groundmove {
-    0% {
-      transform: translate(0em,0em);
-    }
-    100% {
-      transform: translate(-5.9em,0em);
-    }
-}
-
-@keyframes groundmove {
-    0% {
-      transform: translate(0em,0em);
-    }
-    100% {
-      transform: translate(-5.9em,0em);
-    }
-}
