@@ -25,7 +25,7 @@ window.Player = (function() {
 		this.dieSound = document.getElementById("dieSound");
 		this.pointSound = document.getElementById("pointSound");
 		this.jump = true;
-		this.velocity = 0;
+		this.velocity = 0.5;
 		this.game = game;
 		this.pos = {
 			x: 0,
@@ -47,12 +47,16 @@ window.Player = (function() {
 
 		$(window).bind('mousedown', function(){
 			if(self.jump){
+<<<<<<< HEAD
 				self.el.addClass('Player-flap');
+=======
+
+>>>>>>> cb985513ec756d18a1c76bb75731d2f9309d9eb8
 				notInitialState = true;
 				if(afterRestart){
-					//console.log("initial false i mousedown");
 					notInitialState = false;
 				}
+
 				self.flap();
 				self.jump = false;
 			}
@@ -66,11 +70,12 @@ window.Player = (function() {
 
 		$(window).bind('touchstart', function(){
 			if(self.jump){
+
 				notInitialState = true;
 				if(afterRestart){
-					//console.log("initial false i touchstart");
 					notInitialState = false;
 				}
+
 				self.flap();
 				self.jump = false;
 			}
@@ -99,16 +104,22 @@ window.Player = (function() {
 	};
 
 	Player.prototype.flap = function() {
-		this.velocity -= 2.1;
-		this.flapSound.play();
+		console.log("velocity in flap before : " + this.velocity);
+		this.velocity -= 1.5;
+		console.log("velocity in flap after : " + this.velocity);
+		if(!afterRestart){
+			this.flapSound.load();
+			this.flapSound.play();
+
+		}
 	};
 
 	Player.prototype.onFrame = function(delta) {
 
 		if(notInitialState){
-			//console.log('on frame');
 			this.velocity += GRAVITY;
-			this.pos.y += this.velocity - delta;
+			//console.log("velocity in in frame after : " + this.velocity);
+			this.pos.y += this.velocity;
 			//this.pos.y += 0.98;
 		}
 
@@ -159,8 +170,9 @@ window.Player = (function() {
 
 		}
 		else if(this.pos.y < -3){
-			   this.pos.y = -3.98;
-				 this.pos.y += 0.98;
+				//console.log("in - boundries");
+			   this.pos.y = -3.05;
+				 this.pos.y += 0.05;
 		}
 
 	};
