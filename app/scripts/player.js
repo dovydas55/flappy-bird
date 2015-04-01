@@ -21,7 +21,7 @@ window.Player = (function() {
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
 		this.jump = true;
-		this.velocity = 0;
+		this.velocity = 0.5;
 		this.game = game;
 		this.pos = {
 			x: 0,
@@ -43,11 +43,12 @@ window.Player = (function() {
 
 		$(window).bind('mousedown', function(){
 			if(self.jump){
+
 				notInitialState = true;
 				if(afterRestart){
-					console.log("initial false i mousedown");
 					notInitialState = false;
 				}
+
 				self.flap();
 				self.jump = false;
 			}
@@ -61,11 +62,12 @@ window.Player = (function() {
 
 		$(window).bind('touchstart', function(){
 			if(self.jump){
+
 				notInitialState = true;
 				if(afterRestart){
-					console.log("initial false i touchstart");
 					notInitialState = false;
 				}
+
 				self.flap();
 				self.jump = false;
 			}
@@ -82,7 +84,7 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
-		console.log(window.innerWidth + " in player func");
+		//console.log(window.innerWidth + " in player func");
 
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
@@ -96,10 +98,15 @@ window.Player = (function() {
 	};
 
 	Player.prototype.flap = function() {
-		console.log('flap');
-		this.velocity -= 2.1;
-		this.flapSound.load();
-		this.flapSound.play();
+		console.log("velocity in flap before : " + this.velocity);
+		this.velocity -= 1.5;
+		console.log("velocity in flap after : " + this.velocity);
+		if(!afterRestart){
+			this.flapSound.load();
+			this.flapSound.play();
+
+		}
+
 	};
 
 	Player.prototype.onFrame = function(delta) {
@@ -118,9 +125,11 @@ window.Player = (function() {
 		}*/
 
 		if(notInitialState){
-			console.log('on frame');
+
+			//console.log("velocity in on frame before : " + this.velocity);
 			this.velocity += GRAVITY;
-			this.pos.y += this.velocity - delta;
+			//console.log("velocity in in frame after : " + this.velocity);
+			this.pos.y += this.velocity;
 			//this.pos.y += 0.98;
 		}
 
@@ -154,8 +163,9 @@ window.Player = (function() {
 
 		}
 		else if(this.pos.y < -3){
-			   this.pos.y = -3.98;
-				 this.pos.y += 0.98;
+				//console.log("in - boundries");
+			   this.pos.y = -3.05;
+				 this.pos.y += 0.05;
 		}
 
 	};

@@ -18,7 +18,7 @@ window.Game = (function() {
 		);
 
 
-		console.log(window.innerWidth);
+		//console.log(window.innerWidth);
 
 		if(window.innerWidth < 500){
 			self.el.addClass('GameCanvas-mobile');
