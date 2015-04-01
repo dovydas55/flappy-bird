@@ -96,7 +96,6 @@ window.Player = (function() {
 	};
 
 	Player.prototype.flap = function() {
-		console.log('flap');
 		this.velocity -= 2.1;
 		//this.flapSound.load();
 		//this.flapSound.play();

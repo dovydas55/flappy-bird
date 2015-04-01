@@ -4,8 +4,10 @@ window.Pipes = (function() {
 	var INITIAL_POSITION_Y1 = 35;
 	var INITIAL_POSITION_X2 = 50;
 	var INITIAL_POSITION_Y2 = -35;
+	var pipe1Interval, pipe2Interval, pipe3Interval;
 
-	var Pipes = function(el1, el2, elPipeUp, elPipeDown, elPipeUp2, elPipeDown2) {
+	var Pipes = function(el1, el2, elPipeUp, elPipeDown, elPipeUp2, elPipeDown2, game) {
+		this.game = game;
 		this.pipeUp1 = el1;
 		this.pipeDown1 = el2;
 
@@ -49,7 +51,6 @@ window.Pipes = (function() {
 		};
 
 		this.randomPosition = 0;
-		spawnPipe1(this);
 	};
 
 	var spawnPipe1 = function(obj){
@@ -60,7 +61,7 @@ window.Pipes = (function() {
 
 		obj.pipeUp1.pos1.x1 = INITIAL_POSITION_X1;
 		obj.pipeDown1.pos2.x2 = INITIAL_POSITION_X2;
-		setTimeout(function(){
+		pipe1Interval = setTimeout(function(){
 			spawnPipe2(obj);
 		}, 3000);
 	};
@@ -74,7 +75,7 @@ window.Pipes = (function() {
 
 		obj.pipeUp2.pos.x = INITIAL_POSITION_X1;
 		obj.pipeDown2.pos.x = INITIAL_POSITION_X2;
-		setTimeout(function(){
+		pipe2Interval = setTimeout(function(){
 			spawnPipe3(obj);
 		}, 3000);
 	};
@@ -88,37 +89,51 @@ window.Pipes = (function() {
 
 		obj.pipeUp3.pos.x = INITIAL_POSITION_X1;
 		obj.pipeDown3.pos.x = INITIAL_POSITION_X2;
-		setTimeout(function(){
+		pipe3Interval = setTimeout(function(){
 			spawnPipe1(obj);
 		}, 3000);
 	};
 
+	Pipes.prototype.lockAllIntervals = function(){
+		clearTimeout(pipe1Interval);
+		clearTimeout(pipe2Interval);
+		clearTimeout(pipe3Interval);
+	};
+
+	Pipes.prototype.StartIntervalChain = function(obj){
+		spawnPipe1(obj);
+	};
+
 	Pipes.prototype.onFrame = function(delta) {
-			this.pipeUp1.pos1.x1 -= 0.3;
-			this.pipeDown1.pos2.x2 -= 0.3;
+			if(this.game.isPlaying){
+				this.pipeUp1.pos1.x1 -= 0.3;
+				this.pipeDown1.pos2.x2 -= 0.3;
 
-			this.pipeUp2.pos.x -= 0.3;
-			this.pipeDown2.pos.x -= 0.3;
+				this.pipeUp2.pos.x -= 0.3;
+				this.pipeDown2.pos.x -= 0.3;
 
-			this.pipeUp3.pos.x -= 0.3;
-			this.pipeDown3.pos.x -= 0.3;
+				this.pipeUp3.pos.x -= 0.3;
+				this.pipeDown3.pos.x -= 0.3;
 
-			/* for collision detection
-			this.PipeLocation.PipeUp.x = this.pos1.x1;
-			this.PipeLocation.PipeUp.y = this.pos1.y1;
-			this.PipeLocation.PipeDown.x = this.pos2.x2;
-			this.PipeLocation.PipeDown.y = this.pos2.y2;
-			*/
+				/* for collision detection
+				this.PipeLocation.PipeUp.x = this.pos1.x1;
+				this.PipeLocation.PipeUp.y = this.pos1.y1;
+				this.PipeLocation.PipeDown.x = this.pos2.x2;
+				this.PipeLocation.PipeDown.y = this.pos2.y2;
+				*/
 
-			this.pipeUp1.css('transform', 'translateZ(0) translate(' + this.pipeUp1.pos1.x1 + 'em, ' + this.pipeUp1.pos1.y1 + 'em)');
-			this.pipeDown1.css('transform', 'translateZ(0) translate(' + this.pipeDown1.pos2.x2 + 'em, ' + this.pipeDown1.pos2.y2 + 'em)');
+				this.pipeUp1.css('transform', 'translateZ(0) translate(' + this.pipeUp1.pos1.x1 + 'em, ' + this.pipeUp1.pos1.y1 + 'em)');
+				this.pipeDown1.css('transform', 'translateZ(0) translate(' + this.pipeDown1.pos2.x2 + 'em, ' + this.pipeDown1.pos2.y2 + 'em)');
 
-			this.pipeUp2.css('transform', 'translateZ(0) translate(' + this.pipeUp2.pos.x + 'em, ' + this.pipeUp2.pos.y + 'em)');
-			this.pipeDown2.css('transform', 'translateZ(0) translate(' + this.pipeDown2.pos.x + 'em, ' + this.pipeDown2.pos.y + 'em)');
+				this.pipeUp2.css('transform', 'translateZ(0) translate(' + this.pipeUp2.pos.x + 'em, ' + this.pipeUp2.pos.y + 'em)');
+				this.pipeDown2.css('transform', 'translateZ(0) translate(' + this.pipeDown2.pos.x + 'em, ' + this.pipeDown2.pos.y + 'em)');
 
-			this.pipeUp3.css('transform', 'translateZ(0) translate(' + this.pipeUp3.pos.x + 'em, ' + this.pipeUp3.pos.y + 'em)');
-			this.pipeDown3.css('transform', 'translateZ(0) translate(' + this.pipeDown3.pos.x + 'em, ' + this.pipeDown3.pos.y + 'em)');
-
+				this.pipeUp3.css('transform', 'translateZ(0) translate(' + this.pipeUp3.pos.x + 'em, ' + this.pipeUp3.pos.y + 'em)');
+				this.pipeDown3.css('transform', 'translateZ(0) translate(' + this.pipeDown3.pos.x + 'em, ' + this.pipeDown3.pos.y + 'em)');
+			} else{
+				console.log("lock everything");
+				this.lockAllIntervals();
+			}
 	};
 
 	Pipes.prototype.reset = function() {
@@ -127,15 +142,17 @@ window.Pipes = (function() {
 			this.pipeDown1.pos2.x2 = INITIAL_POSITION_X2;
 			this.pipeDown1.pos2.y2 = INITIAL_POSITION_Y2;
 
-			this.pipeUp2.pos.x = INITIAL_POSITION_X1 + 50;
+			this.pipeUp2.pos.x = INITIAL_POSITION_X1 + 60;
 			this.pipeUp2.pos.y = INITIAL_POSITION_Y1;
-			this.pipeDown2.pos.x = INITIAL_POSITION_X2 + 50;
+			this.pipeDown2.pos.x = INITIAL_POSITION_X2 + 60;
 			this.pipeDown2.pos.y = INITIAL_POSITION_Y2;
 
 			this.pipeUp3.pos.x = INITIAL_POSITION_X1 + 120;
 			this.pipeUp3.pos.y = INITIAL_POSITION_Y1;
 			this.pipeDown3.pos.x = INITIAL_POSITION_X2 + 120;
 			this.pipeDown3.pos.y = INITIAL_POSITION_Y2;
+
+			this.StartIntervalChain(this);
 	};
 
 	/**

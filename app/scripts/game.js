@@ -12,7 +12,7 @@ window.Game = (function() {
 		this.ground = this.el.find('.Ground');
 		this.isPlaying = false;
 
-		this.pipes = new window.Pipes(this.el.find('#PipeUp1'), this.el.find('#PipeDown1'), this.el.find('#PipeUp2'), this.el.find('#PipeDown2'), this.el.find('#PipeUp3'), this.el.find('#PipeDown3'));
+		this.pipes = new window.Pipes(this.el.find('#PipeUp1'), this.el.find('#PipeDown1'), this.el.find('#PipeUp2'), this.el.find('#PipeDown2'), this.el.find('#PipeUp3'), this.el.find('#PipeDown3'), this);
 		this.player = new window.Player(this.el.find('.Player'), this, this.pipes);
 
 		var fontSize = Math.min(
