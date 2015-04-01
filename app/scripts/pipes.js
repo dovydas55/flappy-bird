@@ -1,9 +1,12 @@
 window.Pipes = (function() {
 	'use strict';
+
 	var INITIAL_POSITION_X1 = 50;
-	var INITIAL_POSITION_Y1 = 35;
+	//var INITIAL_POSITION_Y1 = (window.innerHeight /102.4) * 10  * 0.65;
+	var INITIAL_POSITION_Y1 = 37;
 	var INITIAL_POSITION_X2 = 50;
-	var INITIAL_POSITION_Y2 = -35;
+	//var INITIAL_POSITION_Y2 = -1 * (window.innerHeight /102.4) * 10  * 0.65;
+	var INITIAL_POSITION_Y2 = -37;
 	var pipe1Interval, pipe2Interval, pipe3Interval;
 
 	var Pipes = function(el1, el2, elPipeUp, elPipeDown, elPipeUp2, elPipeDown2, game) {
@@ -59,7 +62,7 @@ window.Pipes = (function() {
 	};
 
 	var spawnPipe1 = function(obj){
-		console.log("pipe 1");
+		//console.log("pipe 1");
 
 		var randomPosition = getRandomHeight();
 		obj.pipeUp1.pos1.y1 = INITIAL_POSITION_Y1 + randomPosition;
@@ -73,7 +76,7 @@ window.Pipes = (function() {
 	};
 
 	var spawnPipe2 = function(obj){
-		console.log("pipe 2");
+		//console.log("pipe 2");
 
 		var randomPosition = getRandomHeight();
 		obj.pipeUp2.pos.y = INITIAL_POSITION_Y1 + randomPosition;
@@ -87,7 +90,7 @@ window.Pipes = (function() {
 	};
 
 	var spawnPipe3 = function(obj){
-		console.log("pipe 3");
+		//console.log("pipe 3");
 
 		var randomPosition = getRandomHeight();
 		obj.pipeUp3.pos.y = INITIAL_POSITION_Y1 + randomPosition;
@@ -194,11 +197,6 @@ window.Pipes = (function() {
 			this.StartIntervalChain(this);
 	};
 
-	/**
-	 * Some shared constants.
-	 */
-	Pipes.prototype.WORLD_WIDTH = 102.4;
-	Pipes.prototype.WORLD_HEIGHT = 57.6;
 
 	return Pipes;
 })();
