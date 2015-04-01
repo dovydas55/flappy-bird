@@ -217,10 +217,10 @@ body {
   right: 0;
   background-size: cover; }
 
-#PipeUp {
+.PipeUp {
   background-image: url("/../assets/images/PipeUpLong.png"); }
 
-#PipeDown {
+.PipeDown {
   background-image: url("/../assets/images/PipeDownLong.png"); }
 
 /*# sourceMappingURL=main.css.map */

@@ -14,7 +14,7 @@ window.Game = (function() {
 		this.ground = this.el.find('.Ground');
 		this.isPlaying = false;
 
-		this.pipes = new window.Pipes(this.el.find('#PipeUp'), this.el.find('#PipeDown'), this);
+		this.pipes = new window.Pipes(this.el.find('#PipeUp1'), this.el.find('#PipeDown1'), this);
 
 		var fontSize = Math.min(
 			window.innerWidth / 102.4,
