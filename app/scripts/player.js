@@ -48,7 +48,6 @@ window.Player = (function() {
 		$(window).bind('mousedown', function(){
 			if(self.jump){
 				self.el.addClass('Player-flap');
-				
 				notInitialState = true;
 				if(afterRestart){
 					notInitialState = false;
