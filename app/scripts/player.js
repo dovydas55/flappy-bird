@@ -5,6 +5,8 @@ window.Player = (function() {
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
+	var BEST = 0;
+	var SCORE = 0;
 	var GRAVITY = 100;
 	var JUMP = 35;
 	var WIDTH = 5;
@@ -85,6 +87,13 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
+
+
+		if(SCORE > BEST){
+			BEST = SCORE;
+		}
+		console.log("best: " + BEST);
+		SCORE = 0;
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
 			this.pos.y = INITIAL_POSITION_Y_MOBILE;
@@ -106,7 +115,7 @@ window.Player = (function() {
 
 	Player.prototype.onFrame = function(delta) {
 
-		console.log(this.velocity);
+		//console.log(this.velocity);
 		if(notInitialState){
 			this.pos.y -= this.velocity * delta;
 			this.velocity -= GRAVITY * delta;
@@ -124,7 +133,7 @@ window.Player = (function() {
 		/*TODO: check if he hits the pipe! */
 		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -47){
 			//console.log("-pipe 1-");
-			console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
+			//console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
 
 			didNotDie = true;
 		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -47){
@@ -137,7 +146,13 @@ window.Player = (function() {
 			didNotDie = true;
 		}
 
+
+
 		if(didNotDie){
+
+			SCORE++;
+			console.log("score: " + SCORE);
+
 			this.pointSound.play();
 		}
 
@@ -158,7 +173,6 @@ window.Player = (function() {
 			return this.game.gameover();
 
 		}
-
 
 	};
 
