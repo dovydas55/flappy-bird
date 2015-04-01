@@ -45,10 +45,12 @@ window.Player = (function() {
 
 		$(window).bind('keyup',function(){
 			self.jump = true;
+			self.el.removeClass('Player-flap');
 		});
 
 		$(window).bind('mousedown', function(){
 			if(self.jump){
+				self.el.addClass('Player-flap');
 				notInitialState = true;
 				if(afterRestart){
 					notInitialState = false;
@@ -61,11 +63,13 @@ window.Player = (function() {
 		$(window).bind('mouseup', function(){
 			self.jump = true;
 			afterRestart = false;
+			self.el.removeClass('Player-flap');
 		});
 
 
 		$(window).bind('touchstart', function(){
 			if(self.jump){
+				self.el.addClass('Player-flap');
 				notInitialState = true;
 				if(afterRestart){
 					//console.log("initial false i touchstart");
@@ -79,6 +83,7 @@ window.Player = (function() {
 		$(window).bind('touchend', function(){
 			self.jump = true;
 			afterRestart = false;
+			self.el.removeClass('Player-flap');
 		});
 
 	};
@@ -130,11 +135,15 @@ window.Player = (function() {
 	Player.prototype.checkCollisionWithPipe = function(){
 		var didNotDie = false;
 
-		/*TODO: check if he hits the pipe! */
-		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -47){
-			//console.log("-pipe 1-");
-			//console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
 
+		console.log(this.pipe.PipeLocation.PipeSet1.PipeUP.y);
+		console.log(this.pos.y);
+		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -47){
+
+			//console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
+			if(this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeUP.y){
+					console.log("dieeee");
+			}
 			didNotDie = true;
 		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -47){
 			//console.log("-pipe 2-");
@@ -167,9 +176,7 @@ window.Player = (function() {
 			afterRestart = true;
 
 			this.dieSound.play();
-
 			/* TODO: disable wing sound */
-
 			return this.game.gameover();
 
 		}
