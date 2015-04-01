@@ -23,6 +23,7 @@ window.Player = (function() {
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
 		this.dieSound = document.getElementById("dieSound");
+		this.pointSound = document.getElementById("pointSound");
 		this.jump = true;
 		this.velocity = 0;
 		this.game = game;
@@ -98,7 +99,6 @@ window.Player = (function() {
 
 	Player.prototype.flap = function() {
 		this.velocity -= 2.1;
-		this.flapSound.load();
 		this.flapSound.play();
 	};
 
@@ -118,21 +118,27 @@ window.Player = (function() {
 	};
 
 	Player.prototype.checkCollisionWithPipe = function(){
-		//console.log(this.pos.y);
-		if(this.pipe.PipeLocation.PipeUp.x < -40 && this.pipe.PipeLocation.PipeUp.x > -47){
-			console.log("pig   " + this.pos.y + "   pipe    " + this.pipe.PipeLocation.PipeDown.y);
-			//console.log(this.pipe.PipeLocation.PipeDown.y);
-			//console.log("bird " + this.pos.y);
-			if( /*this.pos.y >= this.pipe.PipeLocation.PipeUp.y ||*/ this.pos.y <= this.pipe.PipeLocation.PipeDown.y ){
-				console.log("dead");
-				//notInitialState = false;
-				//afterRestart = true;
-				//return this.game.gameover();
-			}
+		var didNotDie = false;
+
+		/*TODO: check if he hits the pipe! */
+		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -47){
+			//console.log("-pipe 1-");
+			console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
+
+			didNotDie = true;
+		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -47){
+			//console.log("-pipe 2-");
+
+			didNotDie = true;
+		} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -47){
+			//console.log("-pipe 3-");
+
+			didNotDie = true;
 		}
 
-		//console.log(this.pipe.PipeLocation.PipeUp.x);
-		//console.log(this.pos.x);
+		if(didNotDie){
+			this.pointSound.play();
+		}
 
 	};
 
@@ -145,6 +151,9 @@ window.Player = (function() {
 			afterRestart = true;
 
 			this.dieSound.play();
+
+			/* TODO: disable wing sound */
+
 			return this.game.gameover();
 
 		}

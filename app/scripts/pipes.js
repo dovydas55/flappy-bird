@@ -51,11 +51,17 @@ window.Pipes = (function() {
 		};
 
 		this.randomPosition = 0;
+		this.PipeLocation = {
+			PipeSet1: {PipeUP: {x: INITIAL_POSITION_X1, y: INITIAL_POSITION_Y1}, PipeDown: {x: INITIAL_POSITION_X2, y: INITIAL_POSITION_Y2}},
+			PipeSet2: {PipeUP: {x: INITIAL_POSITION_X1 + 60, y: INITIAL_POSITION_Y1}, PipeDown: {x: INITIAL_POSITION_X2 + 60, y: INITIAL_POSITION_Y2}},
+			PipeSet3: {PipeUP: {x: INITIAL_POSITION_X1 + 120, y: INITIAL_POSITION_Y1}, PipeDown: {x: INITIAL_POSITION_X2 + 120, y: INITIAL_POSITION_Y2}}
+		};
 	};
 
 	var spawnPipe1 = function(obj){
 		console.log("pipe 1");
-		var randomPosition = Math.floor(Math.random()*(28)-15);
+
+		var randomPosition = getRandomHeight();
 		obj.pipeUp1.pos1.y1 = INITIAL_POSITION_Y1 + randomPosition;
 		obj.pipeDown1.pos2.y2 = INITIAL_POSITION_Y2 + randomPosition;
 
@@ -68,8 +74,8 @@ window.Pipes = (function() {
 
 	var spawnPipe2 = function(obj){
 		console.log("pipe 2");
-		var randomPosition = Math.floor(Math.random()*(28)-15);
 
+		var randomPosition = getRandomHeight();
 		obj.pipeUp2.pos.y = INITIAL_POSITION_Y1 + randomPosition;
 		obj.pipeDown2.pos.y = INITIAL_POSITION_Y2 + randomPosition;
 
@@ -82,8 +88,8 @@ window.Pipes = (function() {
 
 	var spawnPipe3 = function(obj){
 		console.log("pipe 3");
-		var randomPosition = Math.floor(Math.random()*(28)-15);
 
+		var randomPosition = getRandomHeight();
 		obj.pipeUp3.pos.y = INITIAL_POSITION_Y1 + randomPosition;
 		obj.pipeDown3.pos.y = INITIAL_POSITION_Y2 + randomPosition;
 
@@ -92,6 +98,10 @@ window.Pipes = (function() {
 		pipe3Interval = setTimeout(function(){
 			spawnPipe1(obj);
 		}, 3000);
+	};
+
+	var getRandomHeight = function(){
+		return Math.floor(Math.random()*(28)-15);
 	};
 
 	Pipes.prototype.lockAllIntervals = function(){
@@ -106,34 +116,63 @@ window.Pipes = (function() {
 
 	Pipes.prototype.onFrame = function(delta) {
 			if(this.game.isPlaying){
-				this.pipeUp1.pos1.x1 -= 0.3;
-				this.pipeDown1.pos2.x2 -= 0.3;
+				this.updatePipePosition();
 
-				this.pipeUp2.pos.x -= 0.3;
-				this.pipeDown2.pos.x -= 0.3;
+				this.recordXCords();
+				this.recordYCords();
 
-				this.pipeUp3.pos.x -= 0.3;
-				this.pipeDown3.pos.x -= 0.3;
-
-				/* for collision detection
-				this.PipeLocation.PipeUp.x = this.pos1.x1;
-				this.PipeLocation.PipeUp.y = this.pos1.y1;
-				this.PipeLocation.PipeDown.x = this.pos2.x2;
-				this.PipeLocation.PipeDown.y = this.pos2.y2;
-				*/
-
-				this.pipeUp1.css('transform', 'translateZ(0) translate(' + this.pipeUp1.pos1.x1 + 'em, ' + this.pipeUp1.pos1.y1 + 'em)');
-				this.pipeDown1.css('transform', 'translateZ(0) translate(' + this.pipeDown1.pos2.x2 + 'em, ' + this.pipeDown1.pos2.y2 + 'em)');
-
-				this.pipeUp2.css('transform', 'translateZ(0) translate(' + this.pipeUp2.pos.x + 'em, ' + this.pipeUp2.pos.y + 'em)');
-				this.pipeDown2.css('transform', 'translateZ(0) translate(' + this.pipeDown2.pos.x + 'em, ' + this.pipeDown2.pos.y + 'em)');
-
-				this.pipeUp3.css('transform', 'translateZ(0) translate(' + this.pipeUp3.pos.x + 'em, ' + this.pipeUp3.pos.y + 'em)');
-				this.pipeDown3.css('transform', 'translateZ(0) translate(' + this.pipeDown3.pos.x + 'em, ' + this.pipeDown3.pos.y + 'em)');
+				this.animatePipes();
 			} else{
 				console.log("lock everything");
 				this.lockAllIntervals();
 			}
+	};
+
+	Pipes.prototype.animatePipes = function(){
+		this.pipeUp1.css('transform', 'translateZ(0) translate(' + this.pipeUp1.pos1.x1 + 'em, ' + this.pipeUp1.pos1.y1 + 'em)');
+		this.pipeDown1.css('transform', 'translateZ(0) translate(' + this.pipeDown1.pos2.x2 + 'em, ' + this.pipeDown1.pos2.y2 + 'em)');
+
+		this.pipeUp2.css('transform', 'translateZ(0) translate(' + this.pipeUp2.pos.x + 'em, ' + this.pipeUp2.pos.y + 'em)');
+		this.pipeDown2.css('transform', 'translateZ(0) translate(' + this.pipeDown2.pos.x + 'em, ' + this.pipeDown2.pos.y + 'em)');
+
+		this.pipeUp3.css('transform', 'translateZ(0) translate(' + this.pipeUp3.pos.x + 'em, ' + this.pipeUp3.pos.y + 'em)');
+		this.pipeDown3.css('transform', 'translateZ(0) translate(' + this.pipeDown3.pos.x + 'em, ' + this.pipeDown3.pos.y + 'em)');
+	};
+
+	Pipes.prototype.updatePipePosition = function(){
+		this.pipeUp1.pos1.x1 -= 0.3;
+		this.pipeDown1.pos2.x2 -= 0.3;
+
+		this.pipeUp2.pos.x -= 0.3;
+		this.pipeDown2.pos.x -= 0.3;
+
+		this.pipeUp3.pos.x -= 0.3;
+		this.pipeDown3.pos.x -= 0.3;
+	};
+
+	Pipes.prototype.recordYCords = function(){
+		/*recording the y coordinates */
+		this.PipeLocation.PipeSet1.PipeUP.y = this.pipeUp1.pos1.y1;
+		this.PipeLocation.PipeSet1.PipeDown.y = this.pipeDown1.pos2.y2;
+
+		this.PipeLocation.PipeSet2.PipeUP.y = this.pipeUp2.pos.y;
+		this.PipeLocation.PipeSet2.PipeDown.y = this.pipeDown2.pos.y;
+
+		this.PipeLocation.PipeSet3.PipeUP.y = this.pipeUp3.pos.y;
+		this.PipeLocation.PipeSet3.PipeDown.y = this.pipeDown3.pos.y;
+	};
+
+	Pipes.prototype.recordXCords = function(){
+		/* recording x coordinates */
+		this.PipeLocation.PipeSet1.PipeUP.x = this.pipeUp1.pos1.x1;
+		this.PipeLocation.PipeSet1.PipeDown.x = this.pipeDown1.pos2.x2;
+
+		this.PipeLocation.PipeSet2.PipeUP.x = this.pipeUp2.pos.x;
+		this.PipeLocation.PipeSet2.PipeDown.x = this.pipeDown2.pos.x;
+
+		this.PipeLocation.PipeSet3.PipeUP.x = this.pipeUp3.pos.x;
+		this.PipeLocation.PipeSet3.PipeDown.x = this.pipeDown3.pos.x;
+
 	};
 
 	Pipes.prototype.reset = function() {
@@ -160,7 +199,6 @@ window.Pipes = (function() {
 	 */
 	Pipes.prototype.WORLD_WIDTH = 102.4;
 	Pipes.prototype.WORLD_HEIGHT = 57.6;
-	Pipes.prototype.PipeLocation = {PipeUp: {x: INITIAL_POSITION_X1, y: INITIAL_POSITION_Y1}, PipeDown: {x: INITIAL_POSITION_X2, y: INITIAL_POSITION_Y2}};
 
 	return Pipes;
 })();
