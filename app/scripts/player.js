@@ -5,6 +5,8 @@ window.Player = (function() {
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
+	var BEST = 0;
+	var SCORE = 0;
 	var GRAVITY = 100;
 	var JUMP = 35;
 	var WIDTH = 5;
@@ -90,6 +92,13 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
+
+
+		if(SCORE > BEST){
+			BEST = SCORE;
+		}
+		console.log("best: " + BEST);
+		SCORE = 0;
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
 			this.pos.y = INITIAL_POSITION_Y_MOBILE;
@@ -124,34 +133,22 @@ window.Player = (function() {
 	};
 
 	Player.prototype.checkCollisionWithPipe = function(){
-		var didNotDie = false;
 
-
-		console.log(this.pipe.PipeLocation.PipeSet1.PipeUP.y);
-		console.log(this.pos.y);
-		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -47){
-
-
-
-			//console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
-			if(this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeUP.y){
-					console.log("dieeee");
+		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50){
+			if(this.pos.y >= this.pipe.PipeLocation.PipeSet1.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeDown.y){
+					return this.game.gameover();
 			}
-
-			didNotDie = true;
-		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -47){
-			//console.log("-pipe 2-");
-
-			didNotDie = true;
-		} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -47){
-			//console.log("-pipe 3-");
-
-			didNotDie = true;
+		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50){
+			if(this.pos.y >= this.pipe.PipeLocation.PipeSet2.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet2.PipeDown.y){
+					return this.game.gameover();
+			}
+		} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50){
+			if(this.pos.y >= this.pipe.PipeLocation.PipeSet3.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet3.PipeDown.y){
+					return this.game.gameover();
+			}
 		}
 
-		if(didNotDie){
-			this.pointSound.play();
-		}
+		this.pointSound.play();
 
 	};
 
@@ -168,7 +165,6 @@ window.Player = (function() {
 			return this.game.gameover();
 
 		}
-
 
 	};
 

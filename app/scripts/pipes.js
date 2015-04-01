@@ -68,6 +68,8 @@ window.Pipes = (function() {
 		obj.pipeUp1.pos1.y1 = INITIAL_POSITION_Y1 + randomPosition;
 		obj.pipeDown1.pos2.y2 = INITIAL_POSITION_Y2 + randomPosition;
 
+		obj.recordYCordsSet1();
+
 		obj.pipeUp1.pos1.x1 = INITIAL_POSITION_X1;
 		obj.pipeDown1.pos2.x2 = INITIAL_POSITION_X2;
 		pipe1Interval = setTimeout(function(){
@@ -82,6 +84,8 @@ window.Pipes = (function() {
 		obj.pipeUp2.pos.y = INITIAL_POSITION_Y1 + randomPosition;
 		obj.pipeDown2.pos.y = INITIAL_POSITION_Y2 + randomPosition;
 
+		obj.recordYCordsSet2();
+
 		obj.pipeUp2.pos.x = INITIAL_POSITION_X1;
 		obj.pipeDown2.pos.x = INITIAL_POSITION_X2;
 		pipe2Interval = setTimeout(function(){
@@ -95,6 +99,8 @@ window.Pipes = (function() {
 		var randomPosition = getRandomHeight();
 		obj.pipeUp3.pos.y = INITIAL_POSITION_Y1 + randomPosition;
 		obj.pipeDown3.pos.y = INITIAL_POSITION_Y2 + randomPosition;
+
+		obj.recordYCordsSet3();
 
 		obj.pipeUp3.pos.x = INITIAL_POSITION_X1;
 		obj.pipeDown3.pos.x = INITIAL_POSITION_X2;
@@ -122,7 +128,7 @@ window.Pipes = (function() {
 				this.updatePipePosition();
 
 				this.recordXCords();
-				this.recordYCords();
+				//this.recordYCords();
 
 				this.animatePipes();
 			} else{
@@ -153,17 +159,24 @@ window.Pipes = (function() {
 		this.pipeDown3.pos.x -= 0.3;
 	};
 
-	Pipes.prototype.recordYCords = function(){
+	Pipes.prototype.recordYCordsSet1 = function(){
 		/*recording the y coordinates */
 		this.PipeLocation.PipeSet1.PipeUP.y = this.pipeUp1.pos1.y1;
-		this.PipeLocation.PipeSet1.PipeDown.y = this.pipeDown1.pos2.y2;
-
-		this.PipeLocation.PipeSet2.PipeUP.y = this.pipeUp2.pos.y;
-		this.PipeLocation.PipeSet2.PipeDown.y = this.pipeDown2.pos.y;
-
-		this.PipeLocation.PipeSet3.PipeUP.y = this.pipeUp3.pos.y;
-		this.PipeLocation.PipeSet3.PipeDown.y = this.pipeDown3.pos.y;
+		this.PipeLocation.PipeSet1.PipeDown.y = this.pipeDown1.pos2.y2 + 60;
 	};
+
+	Pipes.prototype.recordYCordsSet2 = function(){
+		this.PipeLocation.PipeSet2.PipeUP.y = this.pipeUp2.pos.y;
+		this.PipeLocation.PipeSet2.PipeDown.y = this.pipeDown2.pos.y + 60;
+	};
+
+	Pipes.prototype.recordYCordsSet3 = function(){
+		this.PipeLocation.PipeSet3.PipeUP.y = this.pipeUp3.pos.y;
+		this.PipeLocation.PipeSet3.PipeDown.y = this.pipeDown3.pos.y + 60;
+	};
+
+
+
 
 	Pipes.prototype.recordXCords = function(){
 		/* recording x coordinates */
