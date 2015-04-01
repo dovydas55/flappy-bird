@@ -1,4 +1,3 @@
-
 window.Pipes = (function() {
 	'use strict';
 	var INITIAL_POSITION_X1 = 50;
@@ -24,23 +23,34 @@ window.Pipes = (function() {
 			y2: INITIAL_POSITION_Y2
 		};
 
+		this.randomPosition = 0;
 	};
 
 	Pipes.prototype.onFrame = function(delta) {
-			console.log(this.pos1.x1);
+			if(this.pos1.x1 < -100 && this.pos1.x1 > -110){
+				this.randomPosition = Math.floor(Math.random()*(28)-15); /*generate random number between: MIN: -15 MAX: 12*/
+			}
 
 			this.pos1.x1 -= 0.3;
-			this.pos1.y1 = INITIAL_POSITION_Y1;
+			this.pos1.y1 = INITIAL_POSITION_Y1 + this.randomPosition;
 			this.pos2.x2 -= 0.3;
-			this.pos2.y2 = INITIAL_POSITION_Y2;
+			this.pos2.y2 = INITIAL_POSITION_Y2 + this.randomPosition;
+
+
 
 			if(this.pos1.x1 <= -110) {
 					this.pos1.x1 = INITIAL_POSITION_X1;
 					this.pos2.x2 = INITIAL_POSITION_X2;
 			}
 
+			this.PipeLocation.PipeUp.x = this.pos1.x1;
+			this.PipeLocation.PipeUp.y = this.pos1.y1;
+			this.PipeLocation.PipeDown.x = this.pos2.x2;
+			this.PipeLocation.PipeDown.y = this.pos2.y2;
+
 			this.el1.css('transform', 'translateZ(0) translate(' + this.pos1.x1 + 'em, ' + this.pos1.y1 + 'em)');
 			this.el2.css('transform', 'translateZ(0) translate(' + this.pos2.x2 + 'em, ' + this.pos2.y2 + 'em)');
+
 	};
 
 	Pipes.prototype.reset = function() {
@@ -55,6 +65,7 @@ window.Pipes = (function() {
 	 */
 	Pipes.prototype.WORLD_WIDTH = 102.4;
 	Pipes.prototype.WORLD_HEIGHT = 57.6;
+	Pipes.prototype.PipeLocation = {PipeUp: {x: INITIAL_POSITION_X1, y: INITIAL_POSITION_Y1}, PipeDown: {x: INITIAL_POSITION_X2, y: INITIAL_POSITION_Y2}};
 
 	return Pipes;
 })();

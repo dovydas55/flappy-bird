@@ -7,22 +7,18 @@ window.Game = (function() {
 	 * @constructor
 	 */
 	var Game = function(el) {
-
 		var self = this;
 		this.el = el;
-		this.player = new window.Player(this.el.find('.Player'), this);
 		this.ground = this.el.find('.Ground');
 		this.isPlaying = false;
 
 		this.pipes = new window.Pipes(this.el.find('#PipeUp'), this.el.find('#PipeDown'), this);
+		this.player = new window.Player(this.el.find('.Player'), this, this.pipes);
 
 		var fontSize = Math.min(
 			window.innerWidth / 102.4,
 			window.innerHeight / 57.6
 		);
-
-
-		console.log(window.innerWidth);
 
 		if(window.innerWidth < 500){
 			self.el.addClass('GameCanvas-mobile');
@@ -30,7 +26,6 @@ window.Game = (function() {
 				window.innerWidth / 32,
 				window.innerHeight / 48
 			);
-
 		}
 
 		el.css('fontSize', fontSize + 'px');
@@ -104,6 +99,7 @@ window.Game = (function() {
 					that.start();
 				});
 	};
+
 
 	/**
 	 * Some shared constants.

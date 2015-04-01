@@ -16,8 +16,10 @@ window.Player = (function() {
 	var notInitialState = false;
 	var afterRestart = false;
 
-	var Player = function(el, game) {
+	var Player = function(el, game, pipa) {
 		var self  = this;
+		this.pipe = pipa;
+
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
 		this.jump = true;
@@ -45,7 +47,7 @@ window.Player = (function() {
 			if(self.jump){
 				notInitialState = true;
 				if(afterRestart){
-					console.log("initial false i mousedown");
+					//console.log("initial false i mousedown");
 					notInitialState = false;
 				}
 				self.flap();
@@ -63,7 +65,7 @@ window.Player = (function() {
 			if(self.jump){
 				notInitialState = true;
 				if(afterRestart){
-					console.log("initial false i touchstart");
+					//console.log("initial false i touchstart");
 					notInitialState = false;
 				}
 				self.flap();
@@ -82,8 +84,6 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
-		console.log(window.innerWidth + " in player func");
-
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
 			this.pos.y = INITIAL_POSITION_Y_MOBILE;
@@ -98,49 +98,42 @@ window.Player = (function() {
 	Player.prototype.flap = function() {
 		console.log('flap');
 		this.velocity -= 2.1;
-		this.flapSound.load();
-		this.flapSound.play();
+		//this.flapSound.load();
+		//this.flapSound.play();
 	};
 
 	Player.prototype.onFrame = function(delta) {
 
-		/*if(Controls.keys.space || Controls.keys.mouse === 0) {
-
-			notInitialState = true;
-			console.log(Controls.flag);
-			Controls.flag = false;
-
-			if(!Controls.keys[space]){
-				this.pos.y -= delta * SPEED * 6;
-				this.el.css('transform', 'translateZ(0) translate(' + this.pos.y + 'em)');
-				Controls.flag = true;
-			}
-		}*/
-
 		if(notInitialState){
-			console.log('on frame');
+			//console.log('on frame');
 			this.velocity += GRAVITY;
 			this.pos.y += this.velocity - delta;
 			//this.pos.y += 0.98;
 		}
 
-		/*if (Controls.keys.right) {
-			this.pos.x += delta * SPEED;
-		}
-		if (Controls.keys.left) {
-			this.pos.x -= delta * SPEED;
-		}*/
-		/*if (Controls.keys.down) {
-			this.pos.y += delta * SPEED;
-		}
-		if (Controls.keys.up) {
-			this.pos.y -= delta * SPEED;
-		}*/
-
 		this.checkCollisionWithBounds();
-
+		this.checkCollisionWithPipe();
 		// Update UI
 		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+	};
+
+	Player.prototype.checkCollisionWithPipe = function(){
+		console.log(this.pos.y);
+		if(this.pipe.PipeLocation.PipeUp.x < -40 && this.pipe.PipeLocation.PipeUp.x > -47){
+			console.log("pig   " + this.pos.y + "   pipe    " + this.pipe.PipeLocation.PipeDown.y);
+			//console.log(this.pipe.PipeLocation.PipeDown.y);
+			//console.log("bird " + this.pos.y);
+			if( /*this.pos.y >= this.pipe.PipeLocation.PipeUp.y ||*/ this.pos.y <= this.pipe.PipeLocation.PipeDown.y ){
+				console.log("dead");
+				//notInitialState = false;
+				//afterRestart = true;
+				//return this.game.gameover();
+			}
+		}
+
+		//console.log(this.pipe.PipeLocation.PipeUp.x);
+		//console.log(this.pos.x);
+
 	};
 
 	Player.prototype.checkCollisionWithBounds = function() {
