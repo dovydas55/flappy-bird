@@ -118,7 +118,7 @@ window.Player = (function() {
 	};
 
 	Player.prototype.checkCollisionWithPipe = function(){
-		console.log(this.pos.y);
+		//console.log(this.pos.y);
 		if(this.pipe.PipeLocation.PipeUp.x < -40 && this.pipe.PipeLocation.PipeUp.x > -47){
 			console.log("pig   " + this.pos.y + "   pipe    " + this.pipe.PipeLocation.PipeDown.y);
 			//console.log(this.pipe.PipeLocation.PipeDown.y);
