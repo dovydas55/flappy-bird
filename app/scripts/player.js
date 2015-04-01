@@ -5,8 +5,8 @@ window.Player = (function() {
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
-	var SPEED = 30; // * 10 pixels per second
-	var GRAVITY = 0.05;
+	var GRAVITY = 100;
+	var JUMP = 35;
 	var WIDTH = 5;
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 51;
@@ -49,7 +49,6 @@ window.Player = (function() {
 			if(self.jump){
 				notInitialState = true;
 				if(afterRestart){
-					//console.log("initial false i mousedown");
 					notInitialState = false;
 				}
 				self.flap();
@@ -98,17 +97,19 @@ window.Player = (function() {
 	};
 
 	Player.prototype.flap = function() {
-		this.velocity -= 2.1;
-		this.flapSound.play();
+		this.velocity = JUMP;
+		if (!afterRestart){
+			this.flapSound.play();
+		}
+
 	};
 
 	Player.prototype.onFrame = function(delta) {
 
+		console.log(this.velocity);
 		if(notInitialState){
-			//console.log('on frame');
-			this.velocity += GRAVITY;
-			this.pos.y += this.velocity - delta;
-			//this.pos.y += 0.98;
+			this.pos.y -= this.velocity * delta;
+			this.velocity -= GRAVITY * delta;
 		}
 
 		this.checkCollisionWithBounds();
@@ -157,10 +158,7 @@ window.Player = (function() {
 			return this.game.gameover();
 
 		}
-		else if(this.pos.y < -3){
-			   this.pos.y = -3.98;
-				 this.pos.y += 0.98;
-		}
+
 
 	};
 
