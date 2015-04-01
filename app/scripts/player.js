@@ -100,9 +100,7 @@ window.Player = (function() {
 	};
 
 	Player.prototype.flap = function() {
-		console.log("velocity in flap before : " + this.velocity);
 		this.velocity -= 1.5;
-		console.log("velocity in flap after : " + this.velocity);
 		if(!afterRestart){
 			this.flapSound.load();
 			this.flapSound.play();
@@ -131,7 +129,7 @@ window.Player = (function() {
 		/*TODO: check if he hits the pipe! */
 		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -47){
 			//console.log("-pipe 1-");
-			console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
+			//console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
 
 			didNotDie = true;
 		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -47){
