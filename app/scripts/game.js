@@ -7,18 +7,18 @@ window.Game = (function() {
 	 * @constructor
 	 */
 	var Game = function(el) {
-
 		var self = this;
 		this.el = el;
-		this.player = new window.Player(this.el.find('.Player'), this);
+		this.ground = this.el.find('.Ground');
 		this.isPlaying = false;
+
+		this.pipes = new window.Pipes(this.el.find('#PipeUp1'), this.el.find('#PipeDown1'), this.el.find('#PipeUp2'), this.el.find('#PipeDown2'), this.el.find('#PipeUp3'), this.el.find('#PipeDown3'), this);
+		this.player = new window.Player(this.el.find('.Player'), this, this.pipes);
+
 		var fontSize = Math.min(
 			window.innerWidth / 102.4,
 			window.innerHeight / 57.6
 		);
-
-
-		//console.log(window.innerWidth);
 
 		if(window.innerWidth < 500){
 			self.el.addClass('GameCanvas-mobile');
@@ -26,7 +26,6 @@ window.Game = (function() {
 				window.innerWidth / 32,
 				window.innerHeight / 48
 			);
-
 		}
 
 		el.css('fontSize', fontSize + 'px');
@@ -51,6 +50,7 @@ window.Game = (function() {
 
 		// Update game entities.
 		this.player.onFrame(delta);
+		this.pipes.onFrame(delta);
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -75,6 +75,8 @@ window.Game = (function() {
 		this.player.reset();
 		this.player.el.removeClass('Player-dead');
 		this.player.el.removeClass('Player-flap');
+		this.ground.removeClass('Ground-stop');
+		this.pipes.reset();
 	};
 
 	/**
@@ -83,6 +85,8 @@ window.Game = (function() {
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
 		this.player.el.addClass('Player-dead');
+
+		this.ground.addClass('Ground-stop');
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;
@@ -95,6 +99,7 @@ window.Game = (function() {
 					that.start();
 				});
 	};
+
 
 	/**
 	 * Some shared constants.

@@ -1,21 +1,21 @@
 .Pipes{
   position: absolute;
-  width: em(350px);
-  height: em(350px);
+  width: em(112px);
+  height: em(600px);
   right: 0;
   background-size: cover;
 }
 
-#PipeUp{
-  bottom: 0;
-  background-image: url("/../assets/images/pipe.png");
-  -webkit-animation: slide 25s linear infinite;
-  animation: slide 25s linear infinite;
+.PipeUp{
+  //bottom: 0;
+  background-image: url("/../assets/images/PipeUpLong.png");
+  //-webkit-animation: slide 25s linear infinite;
+  //animation: slide 25s linear infinite;
 }
 
-#PipeDown{
-  top: 0;
-  background-image: url("/../assets/images/pipe_down.png");
-  -webkit-animation: slide 25s linear infinite;
-  animation: slide 25s linear infinite;
+.PipeDown{
+  //top: 0;
+  background-image: url("/../assets/images/PipeDownLong.png");
+  //-webkit-animation: slide 25s linear infinite;
+  //animation: slide 25s linear infinite;
 }

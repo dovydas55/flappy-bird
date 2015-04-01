@@ -96,3 +96,8 @@
     -webkit-animation: groundmove 0.5s linear infinite;
     animation: groundmove 0.5s linear infinite;
 }
+
+.Ground-stop {
+    -webkit-animation: none;
+    animation: none;
+}

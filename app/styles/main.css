@@ -73,11 +73,14 @@ body {
   background: #067d96;
   background: -webkit-linear-gradient(#067d96, #daf0ff); }
 
-
 .GameCanvas-mobile {
-    width: 32em;
-    height: 48em;
- }
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 32em;
+  height: 48em;
+  margin-left: -16em;
+  margin-top: -24em; }
 
 .Clouds {
   position: absolute;
@@ -133,9 +136,13 @@ body {
   -webkit-animation: groundmove 0.5s linear infinite;
   animation: groundmove 0.5s linear infinite; }
 
+.Ground-stop {
+  -webkit-animation: none;
+  animation: none; }
+
 .Player {
   position: absolute;
-  margin-top: -2.8em;
+  margin-top: -2.2em;
   margin-left: -5em;
   width: 7em;
   height: 5.6em;
@@ -176,8 +183,8 @@ body {
   margin-left: -20em;
   box-sizing: border-box;
   border: 0.2em solid white;
-  border-radius: 5px;
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  box-shadow: 0em 2em 2em rgba(0, 0, 0, 0.5);
   background: #ffffff;
   text-align: center;
   transform: translate(0, -50em);
@@ -205,21 +212,15 @@ body {
 
 .Pipes {
   position: absolute;
-  width: 35em;
-  height: 35em;
+  width: 11.2em;
+  height: 60em;
   right: 0;
   background-size: cover; }
 
-#PipeUp {
-  bottom: 0;
-  background-image: url("/../assets/images/pipe.png");
-  -webkit-animation: slide 25s linear infinite;
-  animation: slide 25s linear infinite; }
+.PipeUp {
+  background-image: url("/../assets/images/PipeUpLong.png"); }
 
-#PipeDown {
-  top: 0;
-  background-image: url("/../assets/images/pipe_down.png");
-  -webkit-animation: slide 25s linear infinite;
-  animation: slide 25s linear infinite; }
+.PipeDown {
+  background-image: url("/../assets/images/PipeDownLong.png"); }
 
 /*# sourceMappingURL=main.css.map */

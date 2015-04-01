@@ -8,8 +8,8 @@
 	margin-left: em(-200px);
 	box-sizing: border-box;
 	border: em(2px) solid white;
-	border-radius: 5px;
-	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+	border-radius: em(5px);
+	box-shadow: 0em em(20px) em(20px) rgba(0, 0, 0, 0.5);
 
 	background: $scoreboard;
 	text-align: center;

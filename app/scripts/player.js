@@ -16,10 +16,14 @@ window.Player = (function() {
 	var notInitialState = false;
 	var afterRestart = false;
 
-	var Player = function(el, game) {
+	var Player = function(el, game, pipa) {
 		var self  = this;
+		this.pipe = pipa;
+
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
+		this.dieSound = document.getElementById("dieSound");
+		this.pointSound = document.getElementById("pointSound");
 		this.jump = true;
 		this.velocity = 0.5;
 		this.game = game;
@@ -84,8 +88,6 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
-		//console.log(window.innerWidth + " in player func");
-
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
 			this.pos.y = INITIAL_POSITION_Y_MOBILE;
@@ -106,50 +108,46 @@ window.Player = (function() {
 			this.flapSound.play();
 
 		}
-
 	};
 
 	Player.prototype.onFrame = function(delta) {
 
-		/*if(Controls.keys.space || Controls.keys.mouse === 0) {
-
-			notInitialState = true;
-			console.log(Controls.flag);
-			Controls.flag = false;
-
-			if(!Controls.keys[space]){
-				this.pos.y -= delta * SPEED * 6;
-				this.el.css('transform', 'translateZ(0) translate(' + this.pos.y + 'em)');
-				Controls.flag = true;
-			}
-		}*/
-
 		if(notInitialState){
-
-			//console.log("velocity in on frame before : " + this.velocity);
 			this.velocity += GRAVITY;
 			//console.log("velocity in in frame after : " + this.velocity);
 			this.pos.y += this.velocity;
 			//this.pos.y += 0.98;
 		}
 
-		/*if (Controls.keys.right) {
-			this.pos.x += delta * SPEED;
-		}
-		if (Controls.keys.left) {
-			this.pos.x -= delta * SPEED;
-		}*/
-		/*if (Controls.keys.down) {
-			this.pos.y += delta * SPEED;
-		}
-		if (Controls.keys.up) {
-			this.pos.y -= delta * SPEED;
-		}*/
-
 		this.checkCollisionWithBounds();
-
+		this.checkCollisionWithPipe();
 		// Update UI
 		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+	};
+
+	Player.prototype.checkCollisionWithPipe = function(){
+		var didNotDie = false;
+
+		/*TODO: check if he hits the pipe! */
+		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -47){
+			//console.log("-pipe 1-");
+			console.log("PIG  " + this.pos.y + "   PIPE  " + this.pipe.PipeLocation.PipeSet1.PipeUP.y);
+
+			didNotDie = true;
+		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -47){
+			//console.log("-pipe 2-");
+
+			didNotDie = true;
+		} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -43 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -47){
+			//console.log("-pipe 3-");
+
+			didNotDie = true;
+		}
+
+		if(didNotDie){
+			this.pointSound.play();
+		}
+
 	};
 
 	Player.prototype.checkCollisionWithBounds = function() {
@@ -159,6 +157,11 @@ window.Player = (function() {
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
 			notInitialState = false;
 			afterRestart = true;
+
+			this.dieSound.play();
+
+			/* TODO: disable wing sound */
+
 			return this.game.gameover();
 
 		}

@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <title>Flying Piggy</title>
+        <title>Fliggy</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="/images/pig.png">
@@ -27,8 +27,9 @@
         <div class="GameCanvas">
           <!--<canvas id="myCanvas" width="1024" height="576">
           </canvas>-->
-            <audio id="flapSound" src="assets/audio/sfx_wing.ogg" controls></audio>
-
+            <audio src="assets/audio/sfx_wing.ogg" id="flapSound">Your browser does not support HTML5 audio</audio>
+            <audio src="assets/audio/sfx_point.ogg" id="pointSound">Your browser does not support HTML5 audio</audio>
+            <audio src="assets/audio/sfx_die.ogg" id="dieSound">Your browser does not support HTML5 audio</audio>
             <div class="Clouds" id="Cloud1"></div>
             <div class="Clouds" id="Cloud2"></div>
             <div class="Clouds" id="Cloud3"></div>
@@ -36,8 +37,15 @@
             <div class="Clouds" id="Cloud5"></div>
             <div class="Clouds" id="Cloud6"></div>
 
-            <div class="Pipes" id="PipeUp"></div>
-            <div class="Pipes" id="PipeDown"></div>
+            <div class="Pipes PipeUp" id="PipeUp1"></div>
+            <div class="Pipes PipeDown" id="PipeDown1"></div>
+
+            <div class="Pipes PipeUp" id="PipeUp2"></div>
+            <div class="Pipes PipeDown" id="PipeDown2"></div>
+
+            <div class="Pipes PipeUp" id="PipeUp3"></div>
+            <div class="Pipes PipeDown" id="PipeDown3"></div>
+
 
             <div class="Player">
               <div class="Wing"></div>
@@ -64,6 +72,7 @@
         <script src="scripts/controls.js"></script>
         <script src="scripts/game.js"></script>
         <script src="scripts/player.js"></script>
+        <script src="scripts/pipes.js"></script>
         <script src="scripts/utils.js"></script>
 
         <!-- endbuild -->
