@@ -10,6 +10,8 @@ $restart-button: #067d96;
 
 /*---------------------*/
 
+//this.pipeDown2.css('transform', 'translateZ(0) translate(' + this.pipeDown2.pos.x + 'em, ' + this.pipeDown2.pos.y + 'em)');
+
 @font-face {
     font-family: Open-Sans;
     src: url('../assets/fonts/open-sans/OpenSans-Regular.ttf');
@@ -22,19 +24,19 @@ $restart-button: #067d96;
 
 @-webkit-keyframes slide {
     0% {
-      transform: translate(100em,0);
+      transform: translateZ(0) translate(100em,0);
     }
     100% {
-      transform: translate(-202.4em,0);
+      transform: translateZ(0) translate(-202.4em,0);
     }
 }
 
 @keyframes slide {
     0% {
-      transform: translate(100em,0);
+      transform: translateZ(0) translate(100em,0);
     }
     100% {
-      transform: translate(-202.4em,0);
+      transform: translateZ(0) translate(-202.4em,0);
     }
 }
 
@@ -42,43 +44,43 @@ $restart-button: #067d96;
 
 @keyframes flap {
     0% {
-      transform:  rotate(0deg) ;
+      transform:  rotateZ(0deg) ;
     }
     20% {
-      transform:  rotate(15deg) ;
+      transform:  rotateZ(15deg) ;
     }
     40% {
-      transform:  rotate(15deg) ;
+      transform:  rotateZ(15deg) ;
     }
     60% {
-      transform:  rotate(-15deg) ;
+      transform:  rotateZ(-15deg) ;
     }
     80% {
-      transform:  rotate(-15deg) ;
+      transform:  rotateZ(-15deg) ;
     }
     100% {
-      transform:  rotate(0deg) ;
+      transform:  rotateZ(0deg) ;
     }
 }
 
 @-webkit-keyframes flap {
     0% {
-      transform:  rotate(0deg) ;
+      transform:  rotateZ(0deg) ;
     }
     20% {
-      transform:  rotate(15deg) ;
+      transform:  rotateZ(15deg) ;
     }
     40% {
-      transform:  rotate(15deg) ;
+      transform:  rotateZ(15deg) ;
     }
     60% {
-      transform:  rotate(-15deg) ;
+      transform:  rotateZ(-15deg) ;
     }
     80% {
-      transform:  rotate(-15deg) ;
+      transform:  rotateZ(-15deg) ;
     }
     100% {
-      transform:  rotate(0deg) ;
+      transform:  rotateZ(0deg) ;
     }
 }
 
@@ -86,18 +88,18 @@ $restart-button: #067d96;
 
 @-webkit-keyframes groundmove {
     0% {
-      transform: translate(0em,0em);
+      transform: translateZ(0) translate(0em,0em);
     }
     100% {
-      transform: translate(-5.9em,0em);
+      transform: translateZ(0) translate(-5.9em,0em);
     }
 }
 
 @keyframes groundmove {
     0% {
-      transform: translate(0em,0em);
+      transform: translateZ(0) translate(0em,0em);
     }
     100% {
-      transform: translate(-5.9em,0em);
+      transform: translateZ(0) translate(-5.9em,0em);
     }
 }
