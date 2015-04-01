@@ -18,10 +18,14 @@ window.Player = (function() {
 	var notInitialState = false;
 	var afterRestart = false;
 
+	var tmpthis;
+	var tmpel;
+
 	var Player = function(el, game, pipa) {
 		var self  = this;
 		this.pipe = pipa;
-
+		tmpel = el;
+		tmpthis = this;
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
 		this.dieSound = document.getElementById("dieSound");
@@ -50,7 +54,10 @@ window.Player = (function() {
 
 		$(window).bind('mousedown', function(){
 			if(self.jump){
-				self.el.addClass('Player-flap');
+				/*if(this.velocity > 0){
+					self.el.addClass('Player-flap-up');
+				}*/
+
 				notInitialState = true;
 				if(afterRestart){
 					notInitialState = false;
@@ -63,7 +70,7 @@ window.Player = (function() {
 		$(window).bind('mouseup', function(){
 			self.jump = true;
 			afterRestart = false;
-			self.el.removeClass('Player-flap');
+			//self.el.removeClass('Player-flap');
 		});
 
 
@@ -92,7 +99,8 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
-
+		this.el.removeClass('Player-flap-down');
+		this.el.removeClass('Player-flap-up');
 
 		if(SCORE > BEST){
 			BEST = SCORE;
@@ -121,7 +129,22 @@ window.Player = (function() {
 	Player.prototype.onFrame = function(delta) {
 
 		//console.log(this.velocity);
+
+
 		if(notInitialState){
+
+			if(this.velocity > 0){
+				this.el.removeClass('Player-flap-down');
+				this.el.addClass('Player-flap-up');
+
+			}
+
+			if(this.velocity < 0){
+				this.el.removeClass('Player-flap-up');
+				this.el.addClass('Player-flap-down');
+
+			}
+
 			this.pos.y -= this.velocity * delta;
 			this.velocity -= GRAVITY * delta;
 		}
