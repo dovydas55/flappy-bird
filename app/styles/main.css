@@ -14,41 +14,42 @@ body {
   src: url("../assets/fonts/open-sans/OpenSans-Regular.ttf"); }
 @-webkit-keyframes slide {
   0% {
-    transform: translate(100em, 0); }
+    transform: translateZ(0) translate(100em, 0); }
   100% {
-    transform: translate(-202.4em, 0); } }
+    transform: translateZ(0) translate(-202.4em, 0); } }
 @keyframes slide {
   0% {
-    transform: translate(100em, 0); }
+    transform: translateZ(0) translate(100em, 0); }
   100% {
-    transform: translate(-202.4em, 0); } }
+    transform: translateZ(0) translate(-202.4em, 0); } }
 /*----------------Wing flap -----------------*/
 @keyframes flap {
   0% {
-    transform: rotate(0deg); }
+    transform: rotateZ(0deg); }
   20% {
-    transform: rotate(15deg); }
+    transform: rotateZ(15deg); }
   40% {
-    transform: rotate(15deg); }
+    transform: rotateZ(15deg); }
   60% {
-    transform: rotate(-15deg); }
+    transform: rotateZ(-15deg); }
   80% {
-    transform: rotate(-15deg); }
+    transform: rotateZ(-15deg); }
   100% {
-    transform: rotate(0deg); } }
+    transform: rotateZ(0deg); } }
 @-webkit-keyframes flap {
   0% {
-    transform: rotate(0deg); }
+    transform: rotateZ(0deg); }
   20% {
-    transform: rotate(15deg); }
+    transform: rotateZ(15deg); }
   40% {
-    transform: rotate(15deg); }
+    transform: rotateZ(15deg); }
   60% {
-    transform: rotate(-15deg); }
+    transform: rotateZ(-15deg); }
   80% {
-    transform: rotate(-15deg); }
+    transform: rotateZ(-15deg); }
   100% {
-    transform: rotate(0deg); } }
+    transform: rotateZ(0deg); } }
+
 /*------ Rotate Pig ----------*/
 /*@keyframes bla {
   0%{
@@ -67,14 +68,14 @@ body {
 /*------ Ground move --------*/
 @-webkit-keyframes groundmove {
   0% {
-    transform: translate(0em, 0em); }
+    transform: translateZ(0) translate(0em, 0em); }
   100% {
-    transform: translate(-5.9em, 0em); } }
+    transform: translateZ(0) translate(-5.9em, 0em); } }
 @keyframes groundmove {
   0% {
-    transform: translate(0em, 0em); }
+    transform: translateZ(0) translate(0em, 0em); }
   100% {
-    transform: translate(-5.9em, 0em); } }
+    transform: translateZ(0) translate(-5.9em, 0em); } }
 .GameCanvas {
   font-size: 10px;
   position: absolute;
@@ -148,8 +149,8 @@ body {
   width: 108.3em;
   background-image: url("/../assets/images/ground.png");
   z-index: 1;
-  -webkit-animation: groundmove 0.5s linear infinite;
-  animation: groundmove 0.5s linear infinite; }
+  -webkit-animation: groundmove 0.3s linear infinite;
+  animation: groundmove 0.3s linear infinite; }
 
 .Ground-stop {
   -webkit-animation: none;

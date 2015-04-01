@@ -5,6 +5,8 @@ window.Player = (function() {
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
+	var BEST = 0;
+	var SCORE = 0;
 	var GRAVITY = 100;
 	var JUMP = 35;
 	var WIDTH = 5;
@@ -90,6 +92,13 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
+
+
+		if(SCORE > BEST){
+			BEST = SCORE;
+		}
+		console.log("best: " + BEST);
+		SCORE = 0;
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
 			this.pos.y = INITIAL_POSITION_Y_MOBILE;
@@ -139,9 +148,7 @@ window.Player = (function() {
 			}
 		}
 
-
 		this.pointSound.play();
-
 
 	};
 
@@ -158,7 +165,6 @@ window.Player = (function() {
 			return this.game.gameover();
 
 		}
-
 
 	};
 
