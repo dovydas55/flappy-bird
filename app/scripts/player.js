@@ -22,6 +22,7 @@ window.Player = (function() {
 
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
+		this.dieSound = document.getElementById("dieSound");
 		this.jump = true;
 		this.velocity = 0;
 		this.game = game;
@@ -97,8 +98,8 @@ window.Player = (function() {
 
 	Player.prototype.flap = function() {
 		this.velocity -= 2.1;
-		//this.flapSound.load();
-		//this.flapSound.play();
+		this.flapSound.load();
+		this.flapSound.play();
 	};
 
 	Player.prototype.onFrame = function(delta) {
@@ -142,6 +143,8 @@ window.Player = (function() {
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
 			notInitialState = false;
 			afterRestart = true;
+
+			this.dieSound.play();
 			return this.game.gameover();
 
 		}
