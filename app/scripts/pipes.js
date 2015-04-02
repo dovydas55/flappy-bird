@@ -114,7 +114,7 @@ window.Pipes = (function() {
 	};
 
 	Pipes.prototype.lockAllIntervals = function(){
-		console.log("--locking all intervals--");
+		//console.log("--locking all intervals--");
 		clearTimeout(pipe1Interval);
 		clearTimeout(pipe2Interval);
 		clearTimeout(pipe3Interval);
@@ -126,9 +126,16 @@ window.Pipes = (function() {
 
 	Pipes.prototype.onFrame = function(delta) {
 		if(this.game.isPlaying){
-			this.updatePipePosition();
-			this.recordXCords();
-			this.animatePipes();
+			if(!this.game.START_PIPES){
+				this.updatePipePositionRev();
+				this.animatePipes();
+				this.reset();
+			}
+			else {
+				this.updatePipePosition();
+				this.recordXCords();
+				this.animatePipes();
+			}
 
 		} else{
 			console.log("lock everything");
@@ -156,6 +163,17 @@ window.Pipes = (function() {
 
 		this.pipeUp3.pos.x -= 0.3;
 		this.pipeDown3.pos.x -= 0.3;
+	};
+
+	Pipes.prototype.updatePipePositionRev = function(){
+		this.pipeUp1.pos1.x1 += 0.3;
+		this.pipeDown1.pos2.x2 += 0.3;
+
+		this.pipeUp2.pos.x += 0.3;
+		this.pipeDown2.pos.x += 0.3;
+
+		this.pipeUp3.pos.x += 0.3;
+		this.pipeDown3.pos.x += 0.3;
 	};
 
 	Pipes.prototype.recordYCordsSet1 = function(){
@@ -206,6 +224,7 @@ window.Pipes = (function() {
 			this.pipeDown3.pos.x = INITIAL_POSITION_X2 + 120;
 			this.pipeDown3.pos.y = INITIAL_POSITION_Y2;
 
+			this.lockAllIntervals();
 			this.StartIntervalChain();
 	};
 
