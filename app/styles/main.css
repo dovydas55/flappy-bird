@@ -89,13 +89,10 @@ body {
   margin-top: -28.8em;
   overflow: hidden;
   background: #067d96;
-  background: -webkit-linear-gradient(#067d96, #daf0ff);
-  /*.Score-is-visible{
-      display: none;
-  }*/ }
+  background: -webkit-linear-gradient(#067d96, #daf0ff); }
   .GameCanvas #score {
     position: absolute;
-    left: 48%;
+    left: 49%;
     top: 15%;
     color: #ffffff;
     font-family: 'Open-Sans-Bold';
@@ -242,6 +239,7 @@ body {
   border: 0.2em solid white;
   border-radius: 0.5em;
   box-shadow: 0em 2em 2em rgba(0, 0, 0, 0.5);
+  z-index: 6;
   background: #ffffff;
   text-align: center;
   transform: translate(0, -50em);

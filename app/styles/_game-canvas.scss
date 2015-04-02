@@ -23,7 +23,7 @@
     background: -webkit-linear-gradient($game-backdrop, $game-backdrop-bottom);
     #score{
         position: absolute;
-        left: 48%;
+        left: 49%;
         top: 15%;
         color: $score-text;
         font-family: 'Open-Sans-Bold';
@@ -31,9 +31,6 @@
         z-index: 5;
         display: block;
     }
-    /*.Score-is-visible{
-        display: none;
-    }*/
 }
 
 .GameCanvas-mobile {

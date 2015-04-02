@@ -90,7 +90,7 @@ window.Game = (function() {
 	 */
 	Game.prototype.reset = function() {
 		this.START_PIPES = false;
-		
+
 		this.pipes.reset();
 		this.player.reset();
 
