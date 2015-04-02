@@ -14,6 +14,8 @@ window.Game = (function() {
 		this.SCORE = 0;
 		this.BEST = 0;
 
+		this.START_PIPES = false;
+
 		this.pipes = new window.Pipes(this.el.find('#PipeUp1'), this.el.find('#PipeDown1'), this.el.find('#PipeUp2'), this.el.find('#PipeDown2'), this.el.find('#PipeUp3'), this.el.find('#PipeDown3'), this);
 		this.player = new window.Player(this.el.find('.PlayerBackground'), this, this.pipes);
 
@@ -45,6 +47,9 @@ window.Game = (function() {
 			return;
 		}
 
+		if(this.START_PIPES){
+				console.log("startting pipes");
+		}
 		// Calculate how long since last frame in seconds.
 		var now = +new Date() / 1000,
 				delta = now - this.lastFrame;
@@ -68,7 +73,6 @@ window.Game = (function() {
 	 */
 	Game.prototype.start = function() {
 		this.reset();
-
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
@@ -79,6 +83,7 @@ window.Game = (function() {
 	 * Resets the state of the game so a new game can be started.
 	 */
 	Game.prototype.reset = function() {
+		this.START_PIPES = false;
 		this.player.reset();
 		this.pipes.reset();
 		this.player.el.removeClass('PlayerBackground-dead');

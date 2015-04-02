@@ -39,6 +39,8 @@ window.Player = (function() {
 
 		$(window).bind('keydown',function(e){
 			if(e.keyCode === 32 && self.jump){
+				self.game.START_PIPES = true;
+
 				self.el.addClass('PlayerBackground-flap');
 				notInitialState = true;
 				self.flap();
@@ -58,7 +60,9 @@ window.Player = (function() {
 				}*/
 				self.el.addClass('PlayerBackground-flap');
 				notInitialState = true;
+				self.game.START_PIPES = true;
 				if(afterRestart){
+					self.game.START_PIPES = false;
 					notInitialState = false;
 				}
 				self.flap();
@@ -77,7 +81,9 @@ window.Player = (function() {
 			if(self.jump){
 				self.el.addClass('PlayerBackground-flap');
 				notInitialState = true;
+				self.game.START_PIPES = true;
 				if(afterRestart){
+					self.game.START_PIPES = false;
 					//console.log("initial false i touchstart");
 					notInitialState = false;
 				}
@@ -223,7 +229,7 @@ window.Player = (function() {
 	Player.prototype.hitbox = function(x, y){
 		var dist = Math.sqrt( Math.pow(Math.abs(this.pos.x - x), 2) + Math.pow(Math.abs(this.pos.y - y), 2) );
 
-		console.log(dist);
+		//console.log(dist);
 		//console.log(x);
 		//console.log(this.pos.x);
 		if(dist <= this.radius) {
