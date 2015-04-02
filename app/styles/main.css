@@ -12,6 +12,9 @@ body {
 @font-face {
   font-family: Open-Sans;
   src: url("../assets/fonts/open-sans/OpenSans-Regular.ttf"); }
+@font-face {
+  font-family: Open-Sans-Bold;
+  src: url("../assets/fonts/open-sans/OpenSans-Bold.ttf"); }
 @-webkit-keyframes slide {
   0% {
     transform: translateZ(0) translate(100em, 0); }
@@ -86,7 +89,19 @@ body {
   margin-top: -28.8em;
   overflow: hidden;
   background: #067d96;
-  background: -webkit-linear-gradient(#067d96, #daf0ff); }
+  background: -webkit-linear-gradient(#067d96, #daf0ff);
+  /*.Score-is-visible{
+      display: none;
+  }*/ }
+  .GameCanvas #score {
+    position: absolute;
+    left: 48%;
+    top: 15%;
+    color: #ffffff;
+    font-family: 'Open-Sans-Bold';
+    font-size: 4em;
+    z-index: 5;
+    display: block; }
 
 .GameCanvas-mobile {
   position: absolute;

@@ -7,6 +7,7 @@ $game-backdrop-bottom: #daf0ff;
 $scoreboard: #ffffff;
 $scoreboard-text: #ffffff;
 $restart-button: #067d96;
+$score-text: #ffffff;
 
 /*---------------------*/
 
@@ -15,6 +16,10 @@ $restart-button: #067d96;
 @font-face {
     font-family: Open-Sans;
     src: url('../assets/fonts/open-sans/OpenSans-Regular.ttf');
+}
+@font-face {
+    font-family: Open-Sans-Bold;
+    src: url('../assets/fonts/open-sans/OpenSans-Bold.ttf');
 }
 
 @function em($px, $base: $base-font-size) {

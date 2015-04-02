@@ -21,6 +21,19 @@
     overflow: hidden;
     background: $game-backdrop;
     background: -webkit-linear-gradient($game-backdrop, $game-backdrop-bottom);
+    #score{
+        position: absolute;
+        left: 48%;
+        top: 15%;
+        color: $score-text;
+        font-family: 'Open-Sans-Bold';
+        font-size: 4em;
+        z-index: 5;
+        display: block;
+    }
+    /*.Score-is-visible{
+        display: none;
+    }*/
 }
 
 .GameCanvas-mobile {
