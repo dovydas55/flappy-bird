@@ -20,7 +20,7 @@ window.Player = (function() {
 	var Player = function(el, game, pipa) {
 		var self  = this;
 		this.pipe = pipa;
-		this.radius = 5; /*pig radius*/
+		this.radius = 4; /*pig radius*/
 
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
