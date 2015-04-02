@@ -99,6 +99,16 @@ body {
     font-size: 4em;
     z-index: 5;
     display: block; }
+  .GameCanvas .mute {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    height: 3em;
+    width: 3em;
+    border: solid 0em;
+    border-radius: 1em;
+    background-image: url("/../assets/images/mute.ico");
+    background-size: cover; }
 
 .GameCanvas-mobile {
   position: absolute;
