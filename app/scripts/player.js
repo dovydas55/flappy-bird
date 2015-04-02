@@ -20,6 +20,8 @@ window.Player = (function() {
 	var Player = function(el, game, pipa) {
 		var self  = this;
 		this.pipe = pipa;
+		this.radius = 5; /*pig radius*/
+
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
 		this.dieSound = document.getElementById("dieSound");
@@ -144,19 +146,25 @@ window.Player = (function() {
 
 	Player.prototype.checkCollisionWithPipe = function(){
 		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50){
-			if(this.pos.y >= this.pipe.PipeLocation.PipeSet1.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeDown.y){
+			if(this.pos.y >= this.pipe.PipeLocation.PipeSet1.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeDown.y ||
+			this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeUP.x), this.pipe.PipeLocation.PipeSet1.PipeUP.y) ||
+			this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeDown.x), this.pipe.PipeLocation.PipeSet1.PipeDown.y) ){
 				this.die();
 			}
 		} else if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50.2){
 			this.score();
 		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50){
-			if(this.pos.y >= this.pipe.PipeLocation.PipeSet2.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet2.PipeDown.y){
+			if(this.pos.y >= this.pipe.PipeLocation.PipeSet2.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet2.PipeDown.y ||
+				this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet2.PipeUP.x), this.pipe.PipeLocation.PipeSet2.PipeUP.y) ||
+				this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet2.PipeDown.x), this.pipe.PipeLocation.PipeSet2.PipeDown.y) ){
 				this.die();
 			}
 		} else if(this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50.2){
 			this.score();
 		} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50){
-			if(this.pos.y >= this.pipe.PipeLocation.PipeSet3.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet3.PipeDown.y){
+			if(this.pos.y >= this.pipe.PipeLocation.PipeSet3.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet3.PipeDown.y ||
+				this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet3.PipeUP.x), this.pipe.PipeLocation.PipeSet3.PipeUP.y) ||
+				this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet3.PipeDown.x), this.pipe.PipeLocation.PipeSet3.PipeDown.y) ){
 				this.die();
 
 			}
@@ -206,6 +214,18 @@ window.Player = (function() {
 		this.dieSound.volume  = 0.2;
 		this.pointSound.volume  = 0.2;
 		this.backgroundMusic.volume  = 0.4;
+	};
+
+	Player.prototype.hitbox = function(x, y){
+		var dist = Math.sqrt( Math.pow(Math.abs(this.pos.x - x), 2) + Math.pow(Math.abs(this.pos.y - y), 2) );
+
+		console.log(dist);
+		//console.log(x);
+		//console.log(this.pos.x);
+		if(dist <= this.radius) {
+			return true;
+		}
+		else return false;
 	};
 
 	return Player;
