@@ -61,6 +61,7 @@ window.Pipes = (function() {
 		};
 	};
 
+	/*private functions for pipe*/
 	var spawnPipe1 = function(obj){
 		//console.log("pipe 1");
 
@@ -112,6 +113,8 @@ window.Pipes = (function() {
 	var getRandomHeight = function(){
 		return Math.floor(Math.random()*(28)-15);
 	};
+
+	/*private functions for pipe end*/
 
 	Pipes.prototype.lockAllIntervals = function(){
 		//console.log("--locking all intervals--");

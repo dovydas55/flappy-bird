@@ -7,7 +7,7 @@ window.Player = (function() {
 	// for 1024x576px canvas.
 
 	var GRAVITY = 150;
-	var JUMP = 40;
+	var JUMP = 45;
 	var WIDTH = 5;
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 51;
@@ -41,7 +41,9 @@ window.Player = (function() {
 			if(e.keyCode === 32 && self.jump){
 				self.game.START_PIPES = true;
 
-				self.el.addClass('PlayerBackground-flap');
+				if(!notInitialState){
+					self.el.addClass('PlayerBackground-flap');
+				}
 				notInitialState = true;
 				self.flap();
 				self.jump = false;
@@ -50,7 +52,6 @@ window.Player = (function() {
 
 		$(window).bind('keyup',function(){
 			self.jump = true;
-			//self.el.removeClass('Player-flap');
 		});
 
 		$(window).bind('mousedown', function(){
@@ -58,7 +59,9 @@ window.Player = (function() {
 				/*if(this.velocity > 0){
 					self.el.addClass('Player-flap-up');
 				}*/
-				self.el.addClass('PlayerBackground-flap');
+				if(!notInitialState){
+					self.el.addClass('PlayerBackground-flap');
+				}
 				notInitialState = true;
 				self.game.START_PIPES = true;
 				if(afterRestart){
@@ -73,18 +76,20 @@ window.Player = (function() {
 		$(window).bind('mouseup', function(){
 			self.jump = true;
 			afterRestart = false;
-			//self.el.removeClass('Player-flap');
 		});
 
 
 		$(window).bind('touchstart', function(){
 			if(self.jump){
-				self.el.addClass('PlayerBackground-flap');
+
+				if(!notInitialState){
+					self.el.addClass('PlayerBackground-flap');
+				}
 				notInitialState = true;
 				self.game.START_PIPES = true;
+
 				if(afterRestart){
 					self.game.START_PIPES = false;
-					//console.log("initial false i touchstart");
 					notInitialState = false;
 				}
 				self.flap();
@@ -95,10 +100,10 @@ window.Player = (function() {
 		$(window).bind('touchend', function(){
 			self.jump = true;
 			afterRestart = false;
-			//self.el.removeClass('Player-flap');
 		});
 
 		$(".mute").click(function(){
+
 			console.log("should mute!!");
 			if(self.MUTE === true){
 				self.muteAllSounds();
@@ -115,8 +120,6 @@ window.Player = (function() {
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
-		//this.el.removeClass('Player-flap-down');
-		//this.el.removeClass('Player-flap-up');
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
 			this.pos.y = INITIAL_POSITION_Y_MOBILE;
@@ -125,7 +128,6 @@ window.Player = (function() {
 			this.pos.x = INITIAL_POSITION_X;
 			this.pos.y = INITIAL_POSITION_Y;
 		}
-
 		this.initVolume();
 
 	};
@@ -156,6 +158,7 @@ window.Player = (function() {
 			this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeUP.x), this.pipe.PipeLocation.PipeSet1.PipeUP.y) ||
 			this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeDown.x), this.pipe.PipeLocation.PipeSet1.PipeDown.y) ){
 				this.die();
+
 				this.pos.y = this.game.WORLD_HEIGHT - HEIGHT ;
 			}
 		} else if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50.2){
@@ -193,6 +196,7 @@ window.Player = (function() {
 		notInitialState = false;
 		afterRestart = true;
 		this.dieSound.play();
+
 		return this.game.gameover();
 	};
 
