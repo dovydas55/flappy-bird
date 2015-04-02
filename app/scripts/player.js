@@ -7,7 +7,7 @@ window.Player = (function() {
 	// for 1024x576px canvas.
 
 	var GRAVITY = 150;
-	var JUMP = 40;
+	var JUMP = 45;
 	var WIDTH = 5;
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 51;
