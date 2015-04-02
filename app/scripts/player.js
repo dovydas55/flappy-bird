@@ -5,8 +5,7 @@ window.Player = (function() {
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
-	var BEST = 0;
-	var SCORE = 0;
+
 	var GRAVITY = 100;
 	var JUMP = 35;
 	var WIDTH = 5;
@@ -18,18 +17,16 @@ window.Player = (function() {
 	var notInitialState = false;
 	var afterRestart = false;
 
-	var tmpthis;
-	var tmpel;
-
 	var Player = function(el, game, pipa) {
 		var self  = this;
 		this.pipe = pipa;
-		tmpel = el;
-		tmpthis = this;
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
 		this.dieSound = document.getElementById("dieSound");
 		this.pointSound = document.getElementById("pointSound");
+		this.backgroundMusic = document.getElementById("backGround2");
+
+		this.MUTE = false;
 		this.jump = true;
 		this.velocity = 0;
 		this.game = game;
@@ -93,20 +90,24 @@ window.Player = (function() {
 			self.el.removeClass('Player-flap');
 		});
 
+		$(".mute").click(function(){
+			if(self.MUTE === true){
+				self.muteAllSounds();
+				self.MUTE = false;
+			} else {
+				self.playAllSounds();
+				self.MUTE = true;
+			}
+		});
+
 	};
 
 	/**
 	 * Resets the state of the player for a new game.
 	 */
 	Player.prototype.reset = function() {
-		this.el.removeClass('Player-flap-down');
-		this.el.removeClass('Player-flap-up');
-
-		if(SCORE > BEST){
-			BEST = SCORE;
-		}
-		console.log("best: " + BEST);
-		SCORE = 0;
+		//this.el.removeClass('Player-flap-down');
+		//this.el.removeClass('Player-flap-up');
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
 			this.pos.y = INITIAL_POSITION_Y_MOBILE;
@@ -115,6 +116,8 @@ window.Player = (function() {
 			this.pos.x = INITIAL_POSITION_X;
 			this.pos.y = INITIAL_POSITION_Y;
 		}
+
+		this.initVolume();
 
 	};
 
@@ -127,24 +130,7 @@ window.Player = (function() {
 	};
 
 	Player.prototype.onFrame = function(delta) {
-
-		//console.log(this.velocity);
-
-
 		if(notInitialState){
-
-			if(this.velocity > 0){
-				this.el.removeClass('Player-flap-down');
-				this.el.addClass('Player-flap-up');
-
-			}
-
-			if(this.velocity < 0){
-				this.el.removeClass('Player-flap-up');
-				this.el.addClass('Player-flap-down');
-
-			}
-
 			this.pos.y -= this.velocity * delta;
 			this.velocity -= GRAVITY * delta;
 		}
@@ -156,39 +142,69 @@ window.Player = (function() {
 	};
 
 	Player.prototype.checkCollisionWithPipe = function(){
-
 		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50){
 			if(this.pos.y >= this.pipe.PipeLocation.PipeSet1.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeDown.y){
-					return this.game.gameover();
+				this.die();
 			}
+		} else if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50.2){
+			this.score();
 		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50){
 			if(this.pos.y >= this.pipe.PipeLocation.PipeSet2.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet2.PipeDown.y){
-					return this.game.gameover();
+				this.die();
 			}
+		} else if(this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50.2){
+			this.score();
 		} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50){
 			if(this.pos.y >= this.pipe.PipeLocation.PipeSet3.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet3.PipeDown.y){
-					return this.game.gameover();
+				this.die();
+
 			}
+		} else if(this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50.2){
+			this.score();
 		}
+	};
 
+	Player.prototype.score = function(){
 		this.pointSound.play();
+		this.game.SCORE += 1;
+	};
 
+	Player.prototype.die = function(){
+		notInitialState = false;
+		afterRestart = true;
+		this.dieSound.play();
+		return this.game.gameover();
 	};
 
 	Player.prototype.checkCollisionWithBounds = function() {
 		if (this.pos.x < 0 ||
 			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
-			/*this.pos.y < 0 ||*/
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
-			notInitialState = false;
-			afterRestart = true;
-
-			this.dieSound.play();
 			/* TODO: disable wing sound */
-			return this.game.gameover();
-
+			this.die();
 		}
 
+	};
+
+	Player.prototype.muteAllSounds = function(){
+		this.flapSound.muted = true;
+		this.dieSound.muted = true;
+		this.pointSound.muted = true;
+		this.backgroundMusic.muted = true;
+	};
+
+	Player.prototype.playAllSounds = function(){
+		this.flapSound.muted = false;
+		this.dieSound.muted = false;
+		this.pointSound.muted = false;
+		this.backgroundMusic.muted = false;
+	};
+
+	Player.prototype.initVolume = function(){
+		this.flapSound.volume  = 0.2;
+		this.dieSound.volume  = 0.2;
+		this.pointSound.volume  = 0.2;
+		this.backgroundMusic.volume  = 0.4;
 	};
 
 	return Player;

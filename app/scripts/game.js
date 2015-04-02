@@ -11,6 +11,8 @@ window.Game = (function() {
 		this.el = el;
 		this.ground = this.el.find('.Ground');
 		this.isPlaying = false;
+		this.SCORE = 0;
+		this.BEST = 0;
 
 		this.pipes = new window.Pipes(this.el.find('#PipeUp1'), this.el.find('#PipeDown1'), this.el.find('#PipeUp2'), this.el.find('#PipeDown2'), this.el.find('#PipeUp3'), this.el.find('#PipeDown3'), this);
 		this.player = new window.Player(this.el.find('.Player'), this, this.pipes);
@@ -52,9 +54,9 @@ window.Game = (function() {
 		this.player.onFrame(delta);
 		this.pipes.onFrame(delta);
 
-		/*if(delta >= 0.02){
+		if(delta >= 0.02){
 			console.log(delta);
-		}*/
+		}
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -77,16 +79,23 @@ window.Game = (function() {
 	 */
 	Game.prototype.reset = function() {
 		this.player.reset();
+		this.pipes.reset();
 		this.player.el.removeClass('Player-dead');
 		this.player.el.removeClass('Player-flap');
 		this.ground.removeClass('Ground-stop');
-		this.pipes.reset();
+		this.SCORE = 0;
 	};
 
 	/**
 	 * Signals that the game is over.
 	 */
 	Game.prototype.gameover = function() {
+		if(this.SCORE >= this.BEST){
+			this.BEST = this.SCORE;
+		}
+		console.log("your score is " + this.SCORE);
+		console.log("your best is " + this.BEST);
+
 		this.isPlaying = false;
 		this.player.el.addClass('Player-dead');
 
@@ -103,7 +112,6 @@ window.Game = (function() {
 					that.start();
 				});
 	};
-
 
 	/**
 	 * Some shared constants.
