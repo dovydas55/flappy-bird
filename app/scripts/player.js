@@ -91,6 +91,7 @@ window.Player = (function() {
 		});
 
 		$(".mute").click(function(){
+			console.log("should mute!!");
 			if(self.MUTE === true){
 				self.muteAllSounds();
 				self.MUTE = false;

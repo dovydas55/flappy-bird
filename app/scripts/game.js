@@ -54,10 +54,11 @@ window.Game = (function() {
 		this.player.onFrame(delta);
 		this.pipes.onFrame(delta);
 
+/*
 		if(delta >= 0.02){
 			console.log(delta);
 		}
-
+*/
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
 	};
