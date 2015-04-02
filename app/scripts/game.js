@@ -116,6 +116,8 @@ window.Game = (function() {
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
+		$(".Score").html("Your score: " + this.SCORE);
+		$(".Best").html("High score: " + this.BEST);
 		scoreboardEl
 			.addClass('is-visible')
 			.find('.Scoreboard-restart')
