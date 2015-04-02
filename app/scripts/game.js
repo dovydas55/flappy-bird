@@ -15,7 +15,7 @@ window.Game = (function() {
 		this.BEST = 0;
 
 		this.pipes = new window.Pipes(this.el.find('#PipeUp1'), this.el.find('#PipeDown1'), this.el.find('#PipeUp2'), this.el.find('#PipeDown2'), this.el.find('#PipeUp3'), this.el.find('#PipeDown3'), this);
-		this.player = new window.Player(this.el.find('.Player'), this, this.pipes);
+		this.player = new window.Player(this.el.find('.PlayerBackground'), this, this.pipes);
 
 		var fontSize = Math.min(
 			window.innerWidth / 102.4,
@@ -81,8 +81,8 @@ window.Game = (function() {
 	Game.prototype.reset = function() {
 		this.player.reset();
 		this.pipes.reset();
-		this.player.el.removeClass('Player-dead');
-		this.player.el.removeClass('Player-flap');
+		this.player.el.removeClass('PlayerBackground-dead');
+		this.player.el.removeClass('PlayerBackground-flap');
 		this.ground.removeClass('Ground-stop');
 		this.SCORE = 0;
 	};
@@ -98,7 +98,7 @@ window.Game = (function() {
 		console.log("your best is " + this.BEST);
 
 		this.isPlaying = false;
-		this.player.el.addClass('Player-dead');
+		this.player.el.addClass('PlayerBackground-dead');
 
 		this.ground.addClass('Ground-stop');
 

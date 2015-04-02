@@ -6,8 +6,8 @@ window.Player = (function() {
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
 
-	var GRAVITY = 100;
-	var JUMP = 35;
+	var GRAVITY = 150;
+	var JUMP = 40;
 	var WIDTH = 5;
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 51;
@@ -37,7 +37,7 @@ window.Player = (function() {
 
 		$(window).bind('keydown',function(e){
 			if(e.keyCode === 32 && self.jump){
-				self.el.addClass('Player-flap');
+				self.el.addClass('PlayerBackground-flap');
 				notInitialState = true;
 				self.flap();
 				self.jump = false;
@@ -46,7 +46,7 @@ window.Player = (function() {
 
 		$(window).bind('keyup',function(){
 			self.jump = true;
-			self.el.removeClass('Player-flap');
+			//self.el.removeClass('Player-flap');
 		});
 
 		$(window).bind('mousedown', function(){
@@ -54,7 +54,7 @@ window.Player = (function() {
 				/*if(this.velocity > 0){
 					self.el.addClass('Player-flap-up');
 				}*/
-
+				self.el.addClass('PlayerBackground-flap');
 				notInitialState = true;
 				if(afterRestart){
 					notInitialState = false;
@@ -73,7 +73,7 @@ window.Player = (function() {
 
 		$(window).bind('touchstart', function(){
 			if(self.jump){
-				self.el.addClass('Player-flap');
+				self.el.addClass('PlayerBackground-flap');
 				notInitialState = true;
 				if(afterRestart){
 					//console.log("initial false i touchstart");
@@ -87,7 +87,7 @@ window.Player = (function() {
 		$(window).bind('touchend', function(){
 			self.jump = true;
 			afterRestart = false;
-			self.el.removeClass('Player-flap');
+			//self.el.removeClass('Player-flap');
 		});
 
 		$(".mute").click(function(){
@@ -146,23 +146,27 @@ window.Player = (function() {
 		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50){
 			if(this.pos.y >= this.pipe.PipeLocation.PipeSet1.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeDown.y){
 				this.die();
+				this.pos.y = this.game.WORLD_HEIGHT - HEIGHT ;
 			}
 		} else if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50.2){
 			this.score();
 		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50){
 			if(this.pos.y >= this.pipe.PipeLocation.PipeSet2.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet2.PipeDown.y){
 				this.die();
+				this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
 			}
 		} else if(this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50.2){
 			this.score();
 		} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50){
 			if(this.pos.y >= this.pipe.PipeLocation.PipeSet3.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet3.PipeDown.y){
 				this.die();
+				this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
 
 			}
 		} else if(this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50.2){
 			this.score();
 		}
+
 	};
 
 	Player.prototype.score = function(){
