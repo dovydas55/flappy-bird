@@ -155,34 +155,45 @@ body {
   -webkit-animation: none;
   animation: none; }
 
-.Player {
+.PlayerBackground {
   position: absolute;
-  margin-top: -2.2em;
-  margin-left: -5em;
-  width: 7em;
-  height: 5.6em;
-  background-image: url("/../assets/images/pig_nowings.png");
+  margin-top: -12em;
+  margin-left: -15em;
+  width: 25em;
+  height: 25em;
+  background-image: url("/../assets/images/logo.png");
   background-size: cover;
   transform: translateZ(0); }
-  .Player .Wing {
+  .PlayerBackground .Player {
     position: absolute;
-    left: 1.8em;
-    top: 2em;
-    height: 2.2em;
-    width: 2.5em;
-    background-image: url("/../assets/images/pig_wing.png");
+    margin-top: 10em;
+    margin-left: 11.5em;
+    width: 7em;
+    height: 5.6em;
+    background-image: url("/../assets/images/pig_nowings.png");
     background-size: cover;
-    transform: translateZ(0);
-    animation: flap 0.5s infinite;
-    -webkit-animation: flap 0.5s infinite;
-    transform-origin: 100% 0%; }
+    transform: translateZ(0); }
+    .PlayerBackground .Player .Wing {
+      position: absolute;
+      left: 1.8em;
+      top: 2em;
+      height: 2.2em;
+      width: 2.5em;
+      background-image: url("/../assets/images/pig_wing.png");
+      background-size: cover;
+      transform: translateZ(0);
+      animation: flap 0.5s infinite;
+      -webkit-animation: flap 0.5s infinite;
+      transform-origin: 100% 0%; }
 
-.Player-flap {
-  background-image: url("/../assets/images/pig_openeyes_nowings.png"); }
-  .Player-flap .Wing {
-    animation: flap 0.2s infinite;
-    -webkit-animation: flap 0.2s infinite;
-    transform-origin: 100% 0%; }
+.PlayerBackground-flap {
+  background-image: none; }
+  .PlayerBackground-flap .Player {
+    background-image: url("/../assets/images/pig_openeyes_nowings.png"); }
+    .PlayerBackground-flap .Player .Wing {
+      animation: flap 0.2s infinite;
+      -webkit-animation: flap 0.2s infinite;
+      transform-origin: 100% 0%; }
 
 .Player-flap-up {
   background-image: url("/../assets/images/pig_openeyes_tilt.png"); }
@@ -198,10 +209,12 @@ body {
     -webkit-animation: flap 0.5s infinite;
     transform-origin: 100% 0%; }
 
-.Player-dead {
-  background-image: url("/../assets/images/dead_pig_flip.png"); }
-  .Player-dead .Wing {
-    display: none; }
+.PlayerBackground-dead {
+  background-image: none; }
+  .PlayerBackground-dead .Player {
+    background-image: url("/../assets/images/dead_pig_flip.png"); }
+    .PlayerBackground-dead .Player .Wing {
+      display: none; }
 
 .Scoreboard {
   position: absolute;
