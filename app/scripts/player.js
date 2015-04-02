@@ -187,6 +187,7 @@ window.Player = (function() {
 
 	Player.prototype.score = function(){
 		this.pointSound.play();
+		this.game.incr = true;
 		this.game.SCORE += 1;
 	};
 

@@ -13,6 +13,7 @@ window.Game = (function() {
 		this.isPlaying = false;
 		this.SCORE = 0;
 		this.BEST = 0;
+		this.incr = true;
 
 		this.START_PIPES = false;
 
@@ -61,6 +62,14 @@ window.Game = (function() {
 			console.log(delta);
 		}
 */
+
+		if(this.incr){
+			//console.log("incrementing");
+			$("#score").html(this.SCORE);
+		}
+		this.incr = false;
+
+
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
 	};
@@ -107,6 +116,8 @@ window.Game = (function() {
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
+		$(".Score").html("Your score: " + this.SCORE);
+		$(".Best").html("High score: " + this.BEST);
 		scoreboardEl
 			.addClass('is-visible')
 			.find('.Scoreboard-restart')
