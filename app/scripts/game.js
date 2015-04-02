@@ -90,12 +90,15 @@ window.Game = (function() {
 	 */
 	Game.prototype.reset = function() {
 		this.START_PIPES = false;
-		this.player.reset();
+		
 		this.pipes.reset();
+		this.player.reset();
+
 		this.player.el.removeClass('PlayerBackground-dead');
 		this.player.el.removeClass('PlayerBackground-flap');
 		this.ground.removeClass('Ground-stop');
 		this.SCORE = 0;
+		$("#score").html(this.SCORE);
 	};
 
 	/**

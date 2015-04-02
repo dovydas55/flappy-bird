@@ -156,6 +156,7 @@ window.Player = (function() {
 			this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeUP.x), this.pipe.PipeLocation.PipeSet1.PipeUP.y) ||
 			this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeDown.x), this.pipe.PipeLocation.PipeSet1.PipeDown.y) ){
 				this.die();
+
 				this.pos.y = this.game.WORLD_HEIGHT - HEIGHT ;
 			}
 		} else if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50.2){
@@ -193,6 +194,7 @@ window.Player = (function() {
 		notInitialState = false;
 		afterRestart = true;
 		this.dieSound.play();
+
 		return this.game.gameover();
 	};
 
