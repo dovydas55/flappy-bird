@@ -20,7 +20,7 @@ window.Player = (function() {
 	var Player = function(el, game, pipa) {
 		var self  = this;
 		this.pipe = pipa;
-		this.radius = 4.5; /*pig radius*/
+		this.radius = 4; /*pig radius*/
 
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
@@ -37,7 +37,12 @@ window.Player = (function() {
 			y: 0,
 		};
 
+		/*this.mute = document.getElementById('test');
+		this.mute.addEventListener("click", this.tmp, false);*/
+
+
 		$(window).bind('keydown',function(e){
+
 			if(e.keyCode === 32 && self.jump){
 				self.game.START_PIPES = true;
 
@@ -55,6 +60,12 @@ window.Player = (function() {
 		});
 
 		$(window).bind('mousedown', function(){
+			/*if(self.mute){
+
+				console.log("i mute");
+
+			}*/
+
 			if(self.jump){
 				/*if(this.velocity > 0){
 					self.el.addClass('Player-flap-up');
@@ -119,6 +130,11 @@ window.Player = (function() {
 	/**
 	 * Resets the state of the player for a new game.
 	 */
+
+	/*Player.prototype.tmp = function(bla) {
+		console.log(bla);
+	};*/
+
 	Player.prototype.reset = function() {
 		if(window.innerWidth < 500){
 			this.pos.x = INITIAL_POSITION_X_MOBILE;
@@ -152,28 +168,35 @@ window.Player = (function() {
 		//this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
 		console.log(this.velocity);
 
-		if(this.velocity > 10){
+		/*if(this.velocity > 10){
 
-			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(-25deg)');
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(-25deg)');
 		}
 		else if(this.velocity > 0 ){
 
-			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(-15deg)');
-
-		}
-		else if(this.velocity < -15){
-
-			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(25deg)');
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(-15deg)');
 
 		}
 		else if(this.velocity < -30){
 
-			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(45deg)');
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(70deg)');
 
 		}
-		else{
-			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		else if(this.velocity < -20){
+
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(-10deg)');
+
 		}
+
+		else if(this.velocity < 0){
+
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(35deg)');
+
+		}
+
+		else{*/
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		//}
 
 	};
 
