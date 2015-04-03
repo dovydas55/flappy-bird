@@ -21,6 +21,29 @@
     overflow: hidden;
     background: $game-backdrop;
     background: -webkit-linear-gradient($game-backdrop, $game-backdrop-bottom);
+    background: linear-gradient($game-backdrop, $game-backdrop-bottom);
+    #score{
+        position: absolute;
+        left: 49%;
+        top: 15%;
+        color: $score-text;
+        font-family: 'Open-Sans-Bold';
+        font-size: 4em;
+        z-index: 5;
+        display: block;
+    }
+    .mute{
+        //background-color: $mute-button;
+        position: absolute;
+        top: 1em;
+        left: 1em;
+        height: 3em;
+        width: 3em;
+        border: solid 0em;
+        border-radius: 1em;
+        background-image: url("/../assets/images/mute.ico");
+        background-size: cover;
+    }
 }
 
 .GameCanvas-mobile {

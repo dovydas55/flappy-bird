@@ -29,7 +29,7 @@
           </canvas>-->
 
               <button class="mute">
-                  <span class="mute-text">MUTE</span>
+                  <!--<span class="mute-text"></span>-->
               </button>
 
             <audio src="assets/audio/sfx_wing.ogg" id="flapSound">Your browser does not support HTML5 audio</audio>
@@ -39,14 +39,7 @@
             <!-- <audio src="assets/audio/MP3/happy.mp3" id="backGround1">Your browser does not support HTML5 audio</audio> -->
             <audio src="assets/audio/MP3/pigSong.mp3" loop autoplay id="backGround2">Your browser does not support HTML5 audio</audio>
 
-            <h2 id="score"></h2>
-
-            <!-- TODO: Style -->
-            <style>
-              #score{
-                color: white;
-              }
-            </style>
+            <div id="score"></div>
 
             <div class="Clouds" id="Cloud1"></div>
             <div class="Clouds" id="Cloud2"></div>
@@ -76,8 +69,9 @@
             <div class="Ground"></div>
 
             <div class="Scoreboard">
-                <h2 class="Score"></h2>
-                <h2 class="Best"></h2>
+                <p class="GameOver">GAME OVER!</p>
+                <p class="Score"></p>
+                <p class="Best"></p>
 
                 <button class="Scoreboard-restart">
                     <span class="Scoreboard-restartText">Restart</span>
