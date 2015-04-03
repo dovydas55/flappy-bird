@@ -1,23 +1,56 @@
 
 .Scoreboard {
 	position: absolute;
-	left: 50%;
-	top: em(100px);
-	height: em(300px);
-	width: em(400px);
-	margin-left: em(-200px);
+	left: 35%;
+	top: 10em;
+	height: 30em;
+	width: 30%;
+	pading-top: 2em;
 	box-sizing: border-box;
-	border: em(2px) solid white;
-	border-radius: em(5px);
-	box-shadow: 0em em(20px) em(20px) rgba(0, 0, 0, 0.5);
+	border: solid 0.5em $scoreboard-border;
+	border-radius: 1em;
+	box-shadow: 0em 1em 1em rgba(0, 0, 0, 0.5);
 	z-index: 6;
 
+	//font-size: 2.4em;
 	background: $scoreboard;
 	text-align: center;
 
 	// Keep it off-screen
-	transform: translate(0, em(-500px));
+	transform: translate(0, -50em);
 	transition: transform 0.5s;
+
+	.Score,
+	.Best,
+	.GameOver{
+		font-size: 2em;
+		color: $scoreboard-text;
+		font-family: 'Open-Sans-Bold', sans-serif;
+	}
+	.GameOver{
+		font-size: 3.5em;
+	}
+
+	.Scoreboard-restart {
+		position: absolute;
+		top: 18em;
+		left: 30%;
+		width: 40%;
+		text-align: center;
+		//font-size: inherit;
+		padding: 0.4em 1.5em;
+		border: solid 0.5em $scoreboard-border;
+		background: $restart-button;
+		border-radius: 0.5em;
+		cursor: pointer;
+
+		.Scoreboard-restartText {
+			color: $scoreboard;
+			font-family: 'Open-Sans-Bold', sans-serif;
+			font-size: 1.5em;
+		}
+	}
+
 }
 
 /**
@@ -25,23 +58,4 @@
  */
 .Scoreboard.is-visible {
 	transform: none;
-}
-
-.Scoreboard-restart {
-	margin-top: em(200px);
-
-	font-size: inherit;
-	padding: em(4px) em(15px);
-	border: em(2px) solid white;
-	background: $restart-button;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.Scoreboard-restartText {
-	// NOTICE: You'll lose 10% of your score if you don't change this style!
-	// ^ this is referring to the original Comic-Sans font :D
-	font-family: 'Open-Sans', sans-serif;
-	font-size: em(24px);
-	color: $scoreboard-text;
 }

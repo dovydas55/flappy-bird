@@ -21,6 +21,7 @@
     overflow: hidden;
     background: $game-backdrop;
     background: -webkit-linear-gradient($game-backdrop, $game-backdrop-bottom);
+    background: linear-gradient($game-backdrop, $game-backdrop-bottom);
     #score{
         position: absolute;
         left: 49%;

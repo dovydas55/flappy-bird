@@ -4,11 +4,14 @@
 $base-font-size: 10px;
 $game-backdrop: #067d96;
 $game-backdrop-bottom: #daf0ff;
-$scoreboard: #ffffff;
+$scoreboard: #067d96;
+$scoreboard-border: #ffffff;
 $scoreboard-text: #ffffff;
-$restart-button: #067d96;
+$restart-button:  #ffffff;
 $score-text: #ffffff;
 $mute-button: #ffffff;
+$pipe-dark: #003300;
+$pipe-light: #009933;
 
 /*---------------------*/
 
@@ -130,3 +133,15 @@ $mute-button: #ffffff;
       transform: translateZ(0) translate(-5.9em,0em);
     }
 }
+
+/*-----rotate pig------*/
+/*
+@-webkit-keyframes tiltPigUp {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(45deg);
+    }
+}
+*/

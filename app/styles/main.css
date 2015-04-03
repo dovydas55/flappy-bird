@@ -78,6 +78,17 @@ body {
     transform: translateZ(0) translate(0em, 0em); }
   100% {
     transform: translateZ(0) translate(-5.9em, 0em); } }
+/*-----rotate pig------*/
+/*
+@-webkit-keyframes tiltPigUp {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(45deg);
+    }
+}
+*/
 .GameCanvas {
   font-size: 10px;
   position: absolute;
@@ -89,7 +100,8 @@ body {
   margin-top: -28.8em;
   overflow: hidden;
   background: #067d96;
-  background: -webkit-linear-gradient(#067d96, #daf0ff); }
+  background: -webkit-linear-gradient(#067d96, #daf0ff);
+  background: linear-gradient(#067d96, #daf0ff); }
   .GameCanvas #score {
     position: absolute;
     left: 49%;
@@ -217,20 +229,27 @@ body {
       -webkit-animation: flap 0.2s infinite;
       transform-origin: 100% 0%; }
 
+/*
 .Player-flap-up {
-  background-image: url("/../assets/images/pig_openeyes_tilt.png"); }
-  .Player-flap-up .Wing {
-    animation: flap 0.2s infinite;
-    -webkit-animation: flap 0.2s infinite;
-    transform-origin: 100% 0%; }
+
+  background-image: url("/../assets/images/pig_openeyes_tilt.png");
+  .Wing {
+      animation: flap 0.2s infinite;
+      -webkit-animation: flap 0.2s infinite;
+      transform-origin: 100% 0%;
+  }
+}
 
 .Player-flap-down {
-  background-image: url("/../assets/images/pig_openeyes_tilt_down.png"); }
-  .Player-flap-down .Wing {
-    animation: flap 0.5s infinite;
-    -webkit-animation: flap 0.5s infinite;
-    transform-origin: 100% 0%; }
 
+  background-image: url("/../assets/images/pig_openeyes_tilt_down.png");
+  .Wing {
+      animation: flap 0.5s infinite;
+      -webkit-animation: flap 0.5s infinite;
+      transform-origin: 100% 0%;
+  }
+}
+*/
 .PlayerBackground-dead {
   background-image: none; }
   .PlayerBackground-dead .Player {
@@ -240,40 +259,49 @@ body {
 
 .Scoreboard {
   position: absolute;
-  left: 50%;
+  left: 35%;
   top: 10em;
   height: 30em;
-  width: 40em;
-  margin-left: -20em;
+  width: 30%;
+  pading-top: 2em;
   box-sizing: border-box;
-  border: 0.2em solid white;
-  border-radius: 0.5em;
-  box-shadow: 0em 2em 2em rgba(0, 0, 0, 0.5);
+  border: solid 0.5em #ffffff;
+  border-radius: 1em;
+  box-shadow: 0em 1em 1em rgba(0, 0, 0, 0.5);
   z-index: 6;
-  background: #ffffff;
+  background: #067d96;
   text-align: center;
   transform: translate(0, -50em);
   transition: transform 0.5s; }
+  .Scoreboard .Score,
+  .Scoreboard .Best,
+  .Scoreboard .GameOver {
+    font-size: 2em;
+    color: #ffffff;
+    font-family: 'Open-Sans-Bold', sans-serif; }
+  .Scoreboard .GameOver {
+    font-size: 3.5em; }
+  .Scoreboard .Scoreboard-restart {
+    position: absolute;
+    top: 18em;
+    left: 30%;
+    width: 40%;
+    text-align: center;
+    padding: 0.4em 1.5em;
+    border: solid 0.5em #ffffff;
+    background: #ffffff;
+    border-radius: 0.5em;
+    cursor: pointer; }
+    .Scoreboard .Scoreboard-restart .Scoreboard-restartText {
+      color: #067d96;
+      font-family: 'Open-Sans-Bold', sans-serif;
+      font-size: 1.5em; }
 
 /**
  * Reset transform to animate it into the correct spot on the screen.
  */
 .Scoreboard.is-visible {
   transform: none; }
-
-.Scoreboard-restart {
-  margin-top: 20em;
-  font-size: inherit;
-  padding: 0.4em 1.5em;
-  border: 0.2em solid white;
-  background: #067d96;
-  border-radius: 5px;
-  cursor: pointer; }
-
-.Scoreboard-restartText {
-  font-family: 'Open-Sans', sans-serif;
-  font-size: 2.4em;
-  color: #ffffff; }
 
 .Pipes {
   position: absolute;
@@ -283,6 +311,17 @@ body {
   background-size: cover; }
 
 .PipeUp {
+  /*
+  border:0.2em solid #502946;
+  box-shadow:inset 12px 0px 8px #9ae75b ,
+            inset 20px 0px 4px #f3fc85 ,
+            inset 32px 0px 8px #9ae75b ,
+            inset 36px 0px 8px #71bc2b ,
+            inset 42px 0px 8px #9ae75b ,
+
+            inset -16px 0px 4px #538127 ,
+            inset -24px 0px 4px #78c32a ,
+            inset -32px 0px 4px #4d7e22 ;*/
   background-image: url("/../assets/images/PipeUpLong.png"); }
 
 .PipeDown {

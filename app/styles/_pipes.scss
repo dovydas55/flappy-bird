@@ -7,6 +7,18 @@
 }
 
 .PipeUp{
+
+  /*
+  border:0.2em solid #502946;
+  box-shadow:inset 12px 0px 8px #9ae75b ,
+            inset 20px 0px 4px #f3fc85 ,
+            inset 32px 0px 8px #9ae75b ,
+            inset 36px 0px 8px #71bc2b ,
+            inset 42px 0px 8px #9ae75b ,
+
+            inset -16px 0px 4px #538127 ,
+            inset -24px 0px 4px #78c32a ,
+            inset -32px 0px 4px #4d7e22 ;*/
   //bottom: 0;
   background-image: url("/../assets/images/PipeUpLong.png");
   //-webkit-animation: slide 25s linear infinite;
@@ -14,6 +26,7 @@
 }
 
 .PipeDown{
+
   //top: 0;
   background-image: url("/../assets/images/PipeDownLong.png");
   //-webkit-animation: slide 25s linear infinite;
