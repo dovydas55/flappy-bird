@@ -62,55 +62,59 @@ window.Pipes = (function() {
 	};
 
 	/*private functions for pipe*/
-	var spawnPipe1 = function(obj){
+	Pipes.prototype.spawnPipe1 = function(){
 		//console.log("pipe 1");
 
-		var randomPosition = getRandomHeight();
-		obj.pipeUp1.pos1.y1 = INITIAL_POSITION_Y1 + randomPosition;
-		obj.pipeDown1.pos2.y2 = INITIAL_POSITION_Y2 + randomPosition;
+		var randomPosition = this.getRandomHeight();
+		this.pipeUp1.pos1.y1 = INITIAL_POSITION_Y1 + randomPosition;
+		this.pipeDown1.pos2.y2 = INITIAL_POSITION_Y2 + randomPosition;
 
-		obj.recordYCordsSet1();
+		this.recordYCordsSet1();
 
-		obj.pipeUp1.pos1.x1 = INITIAL_POSITION_X1;
-		obj.pipeDown1.pos2.x2 = INITIAL_POSITION_X2;
+		this.pipeUp1.pos1.x1 = INITIAL_POSITION_X1;
+		this.pipeDown1.pos2.x2 = INITIAL_POSITION_X2;
+		var tmp3 = this;
 		pipe1Interval = setTimeout(function(){
-			spawnPipe2(obj);
+			tmp3.spawnPipe2();
 		}, 3000);
 	};
 
-	var spawnPipe2 = function(obj){
+	Pipes.prototype.spawnPipe2 = function(){
 		//console.log("pipe 2");
 
-		var randomPosition = getRandomHeight();
-		obj.pipeUp2.pos.y = INITIAL_POSITION_Y1 + randomPosition;
-		obj.pipeDown2.pos.y = INITIAL_POSITION_Y2 + randomPosition;
+		var randomPosition = this.getRandomHeight();
+		this.pipeUp2.pos.y = INITIAL_POSITION_Y1 + randomPosition;
+		this.pipeDown2.pos.y = INITIAL_POSITION_Y2 + randomPosition;
 
-		obj.recordYCordsSet2();
+		this.recordYCordsSet2();
 
-		obj.pipeUp2.pos.x = INITIAL_POSITION_X1;
-		obj.pipeDown2.pos.x = INITIAL_POSITION_X2;
+		this.pipeUp2.pos.x = INITIAL_POSITION_X1;
+		this.pipeDown2.pos.x = INITIAL_POSITION_X2;
+
+		var tmp2 = this;
 		pipe2Interval = setTimeout(function(){
-			spawnPipe3(obj);
+			tmp2.spawnPipe3();
 		}, 3000);
 	};
 
-	var spawnPipe3 = function(obj){
+	Pipes.prototype.spawnPipe3 = function(){
 		//console.log("pipe 3");
 
-		var randomPosition = getRandomHeight();
-		obj.pipeUp3.pos.y = INITIAL_POSITION_Y1 + randomPosition;
-		obj.pipeDown3.pos.y = INITIAL_POSITION_Y2 + randomPosition;
+		var randomPosition = this.getRandomHeight();
+		this.pipeUp3.pos.y = INITIAL_POSITION_Y1 + randomPosition;
+		this.pipeDown3.pos.y = INITIAL_POSITION_Y2 + randomPosition;
 
-		obj.recordYCordsSet3();
+		this.recordYCordsSet3();
 
-		obj.pipeUp3.pos.x = INITIAL_POSITION_X1;
-		obj.pipeDown3.pos.x = INITIAL_POSITION_X2;
+		this.pipeUp3.pos.x = INITIAL_POSITION_X1;
+		this.pipeDown3.pos.x = INITIAL_POSITION_X2;
+		var tmp1 = this;
 		pipe3Interval = setTimeout(function(){
-			spawnPipe1(obj);
+			tmp1.spawnPipe1();
 		}, 3000);
 	};
 
-	var getRandomHeight = function(){
+	Pipes.prototype.getRandomHeight = function(){
 		return Math.floor(Math.random()*(28)-15);
 	};
 
@@ -124,7 +128,7 @@ window.Pipes = (function() {
 	};
 
 	Pipes.prototype.StartIntervalChain = function(){
-		spawnPipe1(this);
+			this.spawnPipe1();
 	};
 
 	Pipes.prototype.onFrame = function(delta) {
@@ -194,8 +198,6 @@ window.Pipes = (function() {
 		this.PipeLocation.PipeSet3.PipeUP.y = this.pipeUp3.pos.y;
 		this.PipeLocation.PipeSet3.PipeDown.y = this.pipeDown3.pos.y + 60;
 	};
-
-
 
 
 	Pipes.prototype.recordXCords = function(){
