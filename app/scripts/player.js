@@ -20,7 +20,7 @@ window.Player = (function() {
 	var Player = function(el, game, pipa) {
 		var self  = this;
 		this.pipe = pipa;
-		this.radius = 4; /*pig radius*/
+		this.radius = 4.5; /*pig radius*/
 
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
@@ -150,7 +150,7 @@ window.Player = (function() {
 		this.checkCollisionWithPipe();
 		// Update UI
 		//this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
-		//console.log(this.velocity);
+		console.log(this.velocity);
 
 		if(this.velocity > 10){
 
@@ -221,6 +221,7 @@ window.Player = (function() {
 		afterRestart = true;
 		notInitialState = false;
 		this.dieSound.play();
+		this.velocity = 0;
 
 		return this.game.gameover();
 	};

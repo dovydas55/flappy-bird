@@ -79,6 +79,7 @@ window.Game = (function() {
 	 */
 	Game.prototype.start = function() {
 		this.reset();
+		this.player.velocity = 0;
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
