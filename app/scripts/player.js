@@ -137,7 +137,7 @@ window.Player = (function() {
 		if (!afterRestart){
 			this.flapSound.play();
 		}
-		
+
 	};
 
 	Player.prototype.onFrame = function(delta) {
@@ -149,7 +149,32 @@ window.Player = (function() {
 		this.checkCollisionWithBounds();
 		this.checkCollisionWithPipe();
 		// Update UI
-		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		//this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		//console.log(this.velocity);
+
+		if(this.velocity > 10){
+
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(-25deg)');
+		}
+		else if(this.velocity > 0 ){
+
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(-15deg)');
+
+		}
+		else if(this.velocity < -15){
+
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(25deg)');
+
+		}
+		else if(this.velocity < -30){
+
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(45deg)');
+
+		}
+		else{
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		}
+
 	};
 
 	Player.prototype.checkCollisionWithPipe = function(){
