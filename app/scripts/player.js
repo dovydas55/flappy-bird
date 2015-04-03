@@ -193,8 +193,8 @@ window.Player = (function() {
 	};
 
 	Player.prototype.die = function(){
-		notInitialState = false;
 		afterRestart = true;
+		notInitialState = false;
 		this.dieSound.play();
 
 		return this.game.gameover();
