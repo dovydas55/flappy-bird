@@ -1,8 +1,6 @@
 Requirements:
 
-
-If a player loses he should see his score and a button which starts the game again. 10%
-*****TELMA*****
+** ALL DONE!!!
 
 ---
 
@@ -11,7 +9,7 @@ Additional requirements.
 The character rotates into his direction. The player should either have a sprite animation or some element (like a wing) which animates when flapping.  10%
 *****GUNNHILDUR*****
 
-Style MuteButton.
+Style MuteButton, LiveScore and Best and score after fliggy dies.
 *****GUNNHILDUR*****
 
 ---
@@ -41,3 +39,5 @@ All moving elements should be hardware accelerated. 10%
 Background music and sound effects for flapping and colliding. Mute support. 15%
 
 There should be a background element moving in paralax to the foreground, f.ex. a repeating cloud image. 10%
+
+If a player loses he should see his score and a button which starts the game again. 10%

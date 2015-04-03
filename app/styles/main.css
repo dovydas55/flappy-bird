@@ -104,8 +104,8 @@ body {
   background: linear-gradient(#067d96, #daf0ff); }
   .GameCanvas #score {
     position: absolute;
-    left: 49%;
-    top: 15%;
+    left: 48.5%;
+    top: 10%;
     color: #ffffff;
     font-family: 'Open-Sans-Bold';
     font-size: 4em;

@@ -195,8 +195,8 @@ window.Player = (function() {
 	};
 
 	Player.prototype.die = function(){
-		notInitialState = false;
 		afterRestart = true;
+		notInitialState = false;
 		this.dieSound.play();
 
 		return this.game.gameover();
@@ -208,7 +208,10 @@ window.Player = (function() {
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
 			/* TODO: disable wing sound */
 			this.die();
+			this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
 		}
+
+
 
 	};
 
