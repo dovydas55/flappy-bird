@@ -1,16 +1,20 @@
 
 .Scoreboard {
-	position: absolute;
-	left: 35%;
-	top: 10em;
+	position: relative;
+	//left: 35%;
+	top: 8em;
 	height: 30em;
-	width: 30%;
-	pading-top: 2em;
+	width: 30em;
+	min-width: 30em;
+	min-height: 30em;
+	padding-top: 2em;
+	margin: auto;
+	z-index: 10;
 	box-sizing: border-box;
 	border: solid 0.5em $scoreboard-border;
 	border-radius: 1em;
 	box-shadow: 0em 1em 1em rgba(0, 0, 0, 0.5);
-	z-index: 6;
+
 
 	//font-size: 2.4em;
 	background: $scoreboard;
@@ -32,14 +36,13 @@
 	}
 
 	.Scoreboard-restart {
-		position: absolute;
-		top: 18em;
 		left: 30%;
 		width: 40%;
+		height: 10%;
 		text-align: center;
 		//font-size: inherit;
 		padding: 0.4em 1.5em;
-		border: solid 0.5em $scoreboard-border;
+		border: solid 0em;
 		background: $restart-button;
 		border-radius: 0.5em;
 		cursor: pointer;
@@ -47,7 +50,6 @@
 		.Scoreboard-restartText {
 			color: $scoreboard;
 			font-family: 'Open-Sans-Bold', sans-serif;
-			font-size: 1.5em;
 		}
 	}
 

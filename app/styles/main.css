@@ -258,17 +258,19 @@ body {
       display: none; }
 
 .Scoreboard {
-  position: absolute;
-  left: 35%;
-  top: 10em;
+  position: relative;
+  top: 8em;
   height: 30em;
-  width: 30%;
-  pading-top: 2em;
+  width: 30em;
+  min-width: 30em;
+  min-height: 30em;
+  padding-top: 2em;
+  margin: auto;
+  z-index: 10;
   box-sizing: border-box;
   border: solid 0.5em #ffffff;
   border-radius: 1em;
   box-shadow: 0em 1em 1em rgba(0, 0, 0, 0.5);
-  z-index: 6;
   background: #067d96;
   text-align: center;
   transform: translate(0, -50em);
@@ -282,20 +284,18 @@ body {
   .Scoreboard .GameOver {
     font-size: 3.5em; }
   .Scoreboard .Scoreboard-restart {
-    position: absolute;
-    top: 18em;
     left: 30%;
     width: 40%;
+    height: 10%;
     text-align: center;
     padding: 0.4em 1.5em;
-    border: solid 0.5em #ffffff;
+    border: solid 0em;
     background: #ffffff;
     border-radius: 0.5em;
     cursor: pointer; }
     .Scoreboard .Scoreboard-restart .Scoreboard-restartText {
       color: #067d96;
-      font-family: 'Open-Sans-Bold', sans-serif;
-      font-size: 1.5em; }
+      font-family: 'Open-Sans-Bold', sans-serif; }
 
 /**
  * Reset transform to animate it into the correct spot on the screen.
