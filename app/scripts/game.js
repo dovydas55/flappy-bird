@@ -109,8 +109,8 @@ window.Game = (function() {
 		if(this.SCORE >= this.BEST){
 			this.BEST = this.SCORE;
 		}
-		console.log("your score is " + this.SCORE);
-		console.log("your best is " + this.BEST);
+		//console.log("your score is " + this.SCORE);
+		//console.log("your best is " + this.BEST);
 
 		this.isPlaying = false;
 		this.player.el.addClass('PlayerBackground-dead');

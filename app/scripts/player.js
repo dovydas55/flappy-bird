@@ -22,6 +22,7 @@ window.Player = (function() {
 		this.pipe = pipa;
 		this.radius = 4; /*pig radius*/
 
+		this.enableDeath = true;
 		this.el = el;
 		this.flapSound = document.getElementById("flapSound");
 		this.dieSound = document.getElementById("dieSound");
@@ -157,6 +158,9 @@ window.Player = (function() {
 	};
 
 	Player.prototype.onFrame = function(delta) {
+		if(this.game.START_PIPES){
+				this.enableDeath = true;
+		}
 		if(notInitialState){
 			this.pos.y -= this.velocity * delta;
 			this.velocity -= GRAVITY * delta;
@@ -166,7 +170,7 @@ window.Player = (function() {
 		this.checkCollisionWithPipe();
 		// Update UI
 		//this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
-		console.log(this.velocity);
+		//console.log(this.velocity);
 
 		/*if(this.velocity > 10){
 
@@ -201,36 +205,48 @@ window.Player = (function() {
 	};
 
 	Player.prototype.checkCollisionWithPipe = function(){
-		if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50){
-			if(this.pos.y >= this.pipe.PipeLocation.PipeSet1.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeDown.y ||
-			this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeUP.x), this.pipe.PipeLocation.PipeSet1.PipeUP.y) ||
-			this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeDown.x), this.pipe.PipeLocation.PipeSet1.PipeDown.y) ){
-				this.die();
+		if(this.enableDeath){
+				if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50){
+					if(this.pos.y >= this.pipe.PipeLocation.PipeSet1.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet1.PipeDown.y ||
+					this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeUP.x), this.pipe.PipeLocation.PipeSet1.PipeUP.y) ||
+					this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet1.PipeDown.x), this.pipe.PipeLocation.PipeSet1.PipeDown.y) ){
+						this.pipe.PipeLocation.PipeSet1.PipeUP.x = null;
+						this.pipe.PipeLocation.PipeSet1.PipeDown.x = null;
+						this.die();
 
-				this.pos.y = this.game.WORLD_HEIGHT - HEIGHT ;
-			}
-		} else if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50.2){
-			this.score();
-		} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50){
-			if(this.pos.y >= this.pipe.PipeLocation.PipeSet2.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet2.PipeDown.y ||
-				this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet2.PipeUP.x), this.pipe.PipeLocation.PipeSet2.PipeUP.y) ||
-				this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet2.PipeDown.x), this.pipe.PipeLocation.PipeSet2.PipeDown.y) ){
-				this.die();
-				this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
-			}
-		} else if(this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50.2){
-			this.score();
-		} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50){
-			if(this.pos.y >= this.pipe.PipeLocation.PipeSet3.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet3.PipeDown.y ||
-				this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet3.PipeUP.x), this.pipe.PipeLocation.PipeSet3.PipeUP.y) ||
-				this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet3.PipeDown.x), this.pipe.PipeLocation.PipeSet3.PipeDown.y) ){
-				this.die();
-				this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
+						this.pos.y = this.game.WORLD_HEIGHT - HEIGHT ;
+					}
+				} else if(this.pipe.PipeLocation.PipeSet1.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet1.PipeUP.x >= -50.2){
+					this.score();
+				} else if (this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50){
+					if(this.pos.y >= this.pipe.PipeLocation.PipeSet2.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet2.PipeDown.y ||
+						this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet2.PipeUP.x), this.pipe.PipeLocation.PipeSet2.PipeUP.y) ||
+						this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet2.PipeDown.x), this.pipe.PipeLocation.PipeSet2.PipeDown.y) ){
 
-			}
-		} else if(this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50.2){
-			this.score();
-		}
+						this.pipe.PipeLocation.PipeSet2.PipeUP.x = null;
+						this.pipe.PipeLocation.PipeSet2.PipeDown.x = null;
+						this.die();
+						this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
+					}
+				} else if(this.pipe.PipeLocation.PipeSet2.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet2.PipeUP.x >= -50.2){
+					this.score();
+				} else if (this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -40 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50){
+					if(this.pos.y >= this.pipe.PipeLocation.PipeSet3.PipeUP.y || this.pos.y <= this.pipe.PipeLocation.PipeSet3.PipeDown.y ||
+						this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet3.PipeUP.x), this.pipe.PipeLocation.PipeSet3.PipeUP.y) ||
+						this.hitbox(Math.abs(this.pipe.PipeLocation.PipeSet3.PipeDown.x), this.pipe.PipeLocation.PipeSet3.PipeDown.y) ){
+
+						this.pipe.PipeLocation.PipeSet3.PipeUP.x = null;
+						this.pipe.PipeLocation.PipeSet3.PipeDown.x = null;
+
+						this.die();
+						this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
+
+					}
+				} else if(this.pipe.PipeLocation.PipeSet3.PipeUP.x <= -50 && this.pipe.PipeLocation.PipeSet3.PipeUP.x >= -50.2){
+					this.score();
+				}
+
+	}
 
 	};
 
@@ -241,6 +257,7 @@ window.Player = (function() {
 	};
 
 	Player.prototype.die = function(){
+		this.enableDeath = false;
 		afterRestart = true;
 		notInitialState = false;
 		this.dieSound.play();
