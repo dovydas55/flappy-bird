@@ -137,9 +137,7 @@ window.Player = (function() {
 		if (!afterRestart){
 			this.flapSound.play();
 		}
-
-		//this.el.css('-webkit-transform', 'rotate(-45deg)');
-		//this.el.css('border', 'solid red 3px');
+		
 	};
 
 	Player.prototype.onFrame = function(delta) {

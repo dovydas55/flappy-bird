@@ -32,19 +32,21 @@
         z-index: 5;
         display: block;
     }
-    .mute{
-        //background-color: $mute-button;
-        position: absolute;
-        top: 1em;
-        left: 1em;
-        height: 3em;
-        width: 3em;
-        border: solid 0em;
-        border-radius: 1em;
-        background-image: url("/../assets/images/mute.ico");
-        background-size: cover;
-        z-index: 10;
-    }
+
+}
+
+.mute{
+    //background-color: $mute-button;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    height: 3em;
+    width: 3em;
+    border: solid 0em;
+    border-radius: 1em;
+    background-image: url("/../assets/images/mute.ico");
+    background-size: cover;
+    z-index: 10;
 }
 
 .GameCanvas-mobile {

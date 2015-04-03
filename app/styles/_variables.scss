@@ -136,12 +136,21 @@ $pipe-light: #009933;
 
 /*-----rotate pig------*/
 /*
-@-webkit-keyframes tiltPigUp {
+@-webkit-keyframes tiltUp {
     0% {
       transform: rotateZ(0deg);
     }
     100% {
-      transform: rotateZ(45deg);
+      transform: rotateZ(-45deg);
+    }
+}
+
+@keyframes tiltUp {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(-45deg);
     }
 }
 */
