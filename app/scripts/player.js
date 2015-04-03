@@ -208,7 +208,10 @@ window.Player = (function() {
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
 			/* TODO: disable wing sound */
 			this.die();
+			this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
 		}
+
+
 
 	};
 
