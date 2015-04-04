@@ -31,6 +31,8 @@ window.Game = (function() {
 				window.innerWidth / 32,
 				window.innerHeight / 48
 			);
+
+			fontSize /= 1.2;
 		}
 
 		el.css('fontSize', fontSize + 'px');
