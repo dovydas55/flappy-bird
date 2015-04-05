@@ -20,7 +20,7 @@ window.Player = (function() {
 	var Player = function(el, game, pipa) {
 		var self  = this;
 		this.pipe = pipa;
-		this.radius = 4; /*pig radius*/
+		this.radius = 4.5; /*pig radius*/
 
 		this.enableDeath = true;
 		this.el = el;
@@ -174,16 +174,21 @@ window.Player = (function() {
 
 		if(this.velocity > 10){
 
-			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(-15deg)');
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(-10deg)');
 		}
 		else if(this.velocity > 0 ){
 
-			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(-15deg)');
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(-10deg)');
 
 		}
-		else if(this.velocity < -20){
+		else if(this.velocity < -75){
 
 			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(70deg)');
+
+		}
+		else if(this.velocity < -70){
+
+			this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotateZ(50deg)');
 
 		}
 		/*else if(this.velocity < -20){
