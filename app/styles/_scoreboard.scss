@@ -21,7 +21,7 @@
 	text-align: center;
 
 	// Keep it off-screen
-	transform: translate(0, -50em);
+	transform: translateZ(0) translate(0, -50em);
 	transition: transform 0.5s;
 
 	.Score,
