@@ -1,3 +1,23 @@
+/*#######################################################################
+
+  Authors: Dovydas Stankevicius
+           Telma Guðbjörg Eyþórsdóttir
+           Gunnhildur Finnsdóttir
+
+  Contacts: Dovydas13@ru.is
+            Telma13@ru.is
+            Gunnhildurf13@ru.is
+
+	Known bugs / Conserns:
+					1) Game tends to create some lag if played for longer time
+					2) The hit box for fliggy is defined as a circle with radius 4.5, however the sprite
+					for the main character isnt perfectly round. Consequently, the hitbox isnt 100% accurate
+					3) Due to some timing issues, wich is created by lag, the logo does not disapear after
+					restarting the game. 
+
+  #######################################################################*/
+
+
 window.Game = (function() {
 	'use strict';
 
